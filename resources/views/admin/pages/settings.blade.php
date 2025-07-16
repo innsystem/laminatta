@@ -39,7 +39,7 @@
                                 </div>
                             </div><!-- col -->
 
-                            <div class="col-12 col-md-6">
+                            <div class="col-12 col-md-6 d-none">
                                 <div class="form-group mb-3">
                                     <label>Logo da Empresa</label>
                                     <label for="logo-input" class="cursor-pointer col-12">
@@ -151,12 +151,12 @@
             </div>
         </div>
 
-        <div class="py-2 d-flex align-items-sm-center flex-sm-row flex-column">
+        <div class="py-2 d-flex align-items-sm-center flex-sm-row flex-column d-none">
             <div class="flex-grow-1">
                 <h4 class="fs-18 fw-semibold m-0">Configuração da API (avançado)</h4>
             </div>
         </div>
-        <div class="row">
+        <div class="row d-none">
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">

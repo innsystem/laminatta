@@ -34,12 +34,17 @@
 
     <link rel="stylesheet" href="{{ asset('tpl_site/css/custom_template.css?1'.rand()) }}">
 
-
     @yield('pageCSS')
+
+    @if($getSettings['script_head'] && $getSettings['script_head'] != '')
+        {!! $getSettings['script_head'] !!}
+    @endif
 </head>
 
 <body class="home-luxury-hotel-2 bg-repeat">
-
+    @if($getSettings['script_body'] && $getSettings['script_body'] != '')
+        {!! $getSettings['script_body'] !!}
+    @endif
     <!-- slider drag cursor -->
     <div class="slider-drag-cursor"><i class="fal fa-arrows-up-down-left-right"></i></div>
 
