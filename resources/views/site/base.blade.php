@@ -86,47 +86,24 @@
             <div class="sidemenu-layout">
                 <div class="th-side-menu">
                     <div class="side-logo">
-                        <a href="{{ route('site.index') }}"><img src="{{ asset('/galerias/logo_laminatta.png') }}" alt="Laminatta" style="max-width:120px;"></a>
+                        <a href="{{ route('site.index') }}"><img src="{{ asset('/galerias/logo_laminatta_white.png') }}" alt="Laminatta" style="max-width:160px;"></a>
                     </div>
                     <ul>
-                        <li class="menu-item-has-children">
-                            <a href="{{ route('site.index') }}">Home</a>
-                            <ul class="sub-menu">
-                                <li><a href="{{ route('site.index') }}">Home Lâminas Modernas</a></li>
-                                <li><a href="home-2.html">Home Lâminas Compostas</a></li>
-                                <li><a href="home-3.html">Home Lâminas Naturais</a></li>
-                                <li><a href="home-4.html">Home Lâminas Diversas</a></li>
-                                <li><a href="home-5.html">Home Projetos</a></li>
-                            </ul>
+                        <li class="">
+                            <a href="{{ route('site.index') }}">Início</a>
                         </li>
                         <li class="menu-item-has-children">
-                            <a href="#">Todas as Lâminas</a>
-                            <ul class="sub-menu">
-                                <li><a href="room.html">Lâminas e Painéis</a></li>
-                                <li><a href="room-details.html">Detalhes da Lâmina</a></li>
-                            </ul>
+                            <a href="{{ route('site.about') }}">Sobre Nós</a>
                         </li>
                         <li class="menu-item-has-children">
-                            <a href="#">Nossos Serviços</a>
-                            <ul class="sub-menu">
-                                <li><a href="service.html">Nossos Serviços</a></li>
-                                <li><a href="service-details.html">Detalhes do Serviço</a></li>
-                            </ul>
+                            <a href="{{ route('site.categories.index') }}">Lâminas</a>
                         </li>
-                        <li><a href="gallery.html">Galeria</a></li>
-                        <li><a href="about.html">Sobre Nós</a></li>
-                        <li><a href="team.html">Equipe</a></li>
-                        <li><a href="team-details.html">Detalhes da Equipe</a></li>
-                        <li><a href="pricing.html">Planos</a></li>
                         <li class="menu-item-has-children">
-                            <a href="#">Blog</a>
-                            <ul class="sub-menu">
-                                <li><a href="blog.html">Blog</a></li>
-                                <li><a href="blog-grid.html">Blog em Grade</a></li>
-                                <li><a href="blog-details.html">Detalhes do Blog</a></li>
-                            </ul>
+                            <a href="{{ route('site.services') }}">Serviços</a>
                         </li>
-                        <li><a href="contact.html">Fale Conosco</a></li>
+                        <li class="menu-item-has-children">
+                            <a href="{{ route('site.sustainability') }}">Sustentabilidade</a>
+                        </li>
                     </ul>
 
                 </div>
@@ -228,10 +205,10 @@
                                 <nav class="main-menu style3">
                                     <ul>
                                         <li>
-                                            <a href="about.html">SERVIÇOS</a>
+                                            <a href="{{ route('site.services') }}">SERVIÇOS</a>
                                         </li>
                                         <li>
-                                            <a href="event.html">SUSTENTABILIDADE</a>
+                                            <a href="{{ route('site.sustainability') }}">SUSTENTABILIDADE</a>
                                         </li>
                                     </ul>
                                 </nav>

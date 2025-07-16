@@ -219,35 +219,58 @@
         let isDown = false;
         let startX;
         let scrollLeft;
+        let hasScrolled = false;
 
         // Configurar eventos de mouse para desktop (drag to scroll)
         laminasScroll.addEventListener('mousedown', (e) => {
+            // Não iniciar drag se clicou em um item
+            if (e.target.closest('.lamina-item')) {
+                return;
+            }
+            
             isDown = true;
+            hasScrolled = false;
             laminasScroll.style.cursor = 'grabbing';
             startX = e.pageX - laminasScroll.offsetLeft;
             scrollLeft = laminasScroll.scrollLeft;
+            
+            // Prevenir seleção de texto
+            e.preventDefault();
         });
 
         laminasScroll.addEventListener('mouseleave', () => {
             isDown = false;
-            laminasScroll.style.cursor = 'grab';
+            laminasScroll.style.cursor = 'default';
+            laminasScroll.classList.remove('is-dragging');
         });
 
         laminasScroll.addEventListener('mouseup', () => {
             isDown = false;
-            laminasScroll.style.cursor = 'grab';
+            laminasScroll.style.cursor = 'default';
+            
+            // Remover classe is-dragging após um pequeno delay
+            setTimeout(() => {
+                laminasScroll.classList.remove('is-dragging');
+            }, 100);
         });
 
         laminasScroll.addEventListener('mousemove', (e) => {
             if (!isDown) return;
+            
             e.preventDefault();
             const x = e.pageX - laminasScroll.offsetLeft;
-            const walk = (x - startX) * 2; // Velocidade do scroll
-            laminasScroll.scrollLeft = scrollLeft - walk;
+            const walk = (x - startX) * 1.5; // Velocidade do scroll reduzida
+            
+            // Só considerar como scroll se moveu significativamente
+            if (Math.abs(walk) > 5) {
+                hasScrolled = true;
+                laminasScroll.classList.add('is-dragging');
+                laminasScroll.scrollLeft = scrollLeft - walk;
+            }
         });
 
-        // Configurar cursor para indicar que é arrastável
-        laminasScroll.style.cursor = 'grab';
+        // Configurar cursor para indicar que é arrastável apenas nos espaços vazios
+        laminasScroll.style.cursor = 'default';
 
         // Navegação por teclado (setas esquerda/direita)
         laminasScroll.addEventListener('keydown', (e) => {
@@ -370,303 +393,25 @@
                     item.click();
                 }
             });
+
+            // Melhorar gestão de eventos de hover
+            let hoverTimeout;
+            
+            item.addEventListener('mouseenter', () => {
+                clearTimeout(hoverTimeout);
+                if (!isDown) {
+                    item.style.pointerEvents = 'auto';
+                }
+            });
+            
+            item.addEventListener('mouseleave', () => {
+                clearTimeout(hoverTimeout);
+                hoverTimeout = setTimeout(() => {
+                    item.style.pointerEvents = 'auto';
+                }, 100);
+            });
         });
     });
 </script>
 @endsection
 
-@section('pageCSS')
-<style>
-    .offer-area5 {
-        min-height: 840px;
-    }
-
-    @media (max-width: 768px) {
-        .offer-area5 {
-            min-height: auto;
-        }
-    }
-
-    /* Container principal das lâminas */
-    .laminas-container {
-        width: 100%;
-        overflow: hidden;
-        padding: 20px 0;
-    }
-
-    /* Scroll horizontal */
-    .laminas-scroll {
-        display: flex;
-        gap: 60px;
-        overflow-x: auto;
-        overflow-y: hidden;
-        scroll-behavior: smooth;
-        padding: 10px 0 20px 0;
-        -webkit-overflow-scrolling: touch;
-        /* Smooth scroll no iOS */
-    }
-
-    /* Esconder scrollbar mas manter funcionalidade */
-    .laminas-scroll::-webkit-scrollbar {
-        height: 6px;
-    }
-
-    .laminas-scroll::-webkit-scrollbar-track {
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 3px;
-    }
-
-    .laminas-scroll::-webkit-scrollbar-thumb {
-        background: rgba(255, 255, 255, 0.3);
-        border-radius: 3px;
-    }
-
-    .laminas-scroll::-webkit-scrollbar-thumb:hover {
-        background: rgba(255, 255, 255, 0.5);
-    }
-
-    /* Item individual da lâmina */
-    .lamina-item {
-        flex: 0 0 auto;
-        text-align: center;
-        cursor: pointer;
-        transition: transform 0.3s ease, opacity 0.3s ease;
-    }
-
-    .lamina-item:hover {
-        transform: translateY(-5px);
-    }
-
-    /* Container da imagem */
-    .lamina-img {
-        width: 100%;
-        height: 450px;
-        overflow: hidden;
-        border-radius: 8px;
-        margin-bottom: 15px;
-        position: relative;
-    }
-
-    .lamina-img img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: transform 0.3s ease;
-    }
-
-    .lamina-item:hover .lamina-img img {
-        transform: scale(1.05);
-    }
-
-    /* Título da lâmina */
-    .lamina-title h3 {
-        font-size: 16px;
-        font-weight: 600;
-        color: white;
-        margin: 0;
-        line-height: 1.4;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-    }
-
-    /* Desktop - 5 itens visíveis */
-    @media (min-width: 992px) {
-        .lamina-item {
-            width: calc((100vw - 120px) / 5 - 16px);
-            max-width: 250px;
-            min-width: 200px;
-        }
-    }
-
-    /* Tablet - 3 itens visíveis */
-    @media (min-width: 768px) and (max-width: 991px) {
-        .lamina-item {
-            width: calc((100vw - 100px) / 3 - 14px);
-            min-width: 180px;
-        }
-
-        .lamina-img {
-            height: 180px;
-        }
-    }
-
-    /* Mobile - 2 itens visíveis */
-    @media (max-width: 767px) {
-        .laminas-container {
-            padding: 15px 0;
-        }
-
-        .laminas-scroll {
-            gap: 15px;
-            padding: 5px 0 15px 0;
-        }
-
-        .lamina-item {
-            width: calc((100vw - 80px) / 2 - 8px);
-            min-width: 140px;
-            padding: 15px;
-        }
-
-        .lamina-img {
-            height: 150px;
-            margin-bottom: 10px;
-        }
-
-        .lamina-title h3 {
-            font-size: 14px;
-        }
-    }
-
-    /* Mobile pequeno */
-    @media (max-width: 480px) {
-        .lamina-item {
-            width: calc((100vw - 70px) / 2 - 6px);
-            min-width: 120px;
-            padding: 12px;
-        }
-
-        .lamina-img {
-            height: 120px;
-        }
-
-        .lamina-title h3 {
-            font-size: 12px;
-        }
-    }
-
-    /* Indicador visual de scroll */
-    .laminas-container::after {
-        content: '';
-        position: absolute;
-        right: 20px;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 30px;
-        height: 30px;
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 50%;
-        pointer-events: none;
-        opacity: 0.7;
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='white' viewBox='0 0 16 16'%3E%3Cpath d='M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E");
-        background-repeat: no-repeat;
-        background-position: center;
-        animation: pulse 2s infinite;
-    }
-
-    @keyframes pulse {
-
-        0%,
-        100% {
-            opacity: 0.5;
-        }
-
-        50% {
-            opacity: 1;
-        }
-    }
-
-    /* Esconder indicador em desktop quando não há scroll */
-    @media (min-width: 992px) {
-        .laminas-container::after {
-            display: none;
-        }
-    }
-
-    /* Estados dos indicadores de scroll */
-    .laminas-container {
-        position: relative;
-    }
-
-    /* Gradientes laterais para indicar scroll disponível */
-    .laminas-container.scroll-middle::before,
-    .laminas-container.scroll-start::after,
-    .laminas-container.scroll-end::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        width: 30px;
-        z-index: 10;
-        pointer-events: none;
-    }
-
-    .laminas-container.scroll-middle::before,
-    .laminas-container.scroll-end::before {
-        left: 0;
-        background: linear-gradient(to right, rgba(0, 0, 0, 0.3), transparent);
-    }
-
-    .laminas-container.scroll-middle::after,
-    .laminas-container.scroll-start::after {
-        right: 0;
-        background: linear-gradient(to left, rgba(0, 0, 0, 0.3), transparent);
-    }
-
-    /* Animação suave para transições de estado */
-    .laminas-container::before,
-    .laminas-container::after {
-        transition: opacity 0.3s ease;
-    }
-
-    /* Melhorar performance em dispositivos móveis */
-    .laminas-scroll {
-        transform: translateZ(0);
-        will-change: scroll-position;
-    }
-
-    .lamina-item {
-        transform: translateZ(0);
-        will-change: transform;
-    }
-
-    /* Estado de carregamento (opcional) */
-    .laminas-scroll.loading .lamina-item {
-        opacity: 0;
-        animation: fadeInUp 0.6s ease forwards;
-    }
-
-    .laminas-scroll.loading .lamina-item:nth-child(1) {
-        animation-delay: 0.1s;
-    }
-
-    .laminas-scroll.loading .lamina-item:nth-child(2) {
-        animation-delay: 0.2s;
-    }
-
-    .laminas-scroll.loading .lamina-item:nth-child(3) {
-        animation-delay: 0.3s;
-    }
-
-    .laminas-scroll.loading .lamina-item:nth-child(4) {
-        animation-delay: 0.4s;
-    }
-
-    .laminas-scroll.loading .lamina-item:nth-child(5) {
-        animation-delay: 0.5s;
-    }
-
-    .laminas-scroll.loading .lamina-item:nth-child(6) {
-        animation-delay: 0.6s;
-    }
-
-    .laminas-scroll.loading .lamina-item:nth-child(7) {
-        animation-delay: 0.7s;
-    }
-
-    .laminas-scroll.loading .lamina-item:nth-child(8) {
-        animation-delay: 0.8s;
-    }
-
-    @keyframes fadeInUp {
-        from {
-            opacity: 0;
-            transform: translateY(20px);
-        }
-
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-</style>
-@endsection

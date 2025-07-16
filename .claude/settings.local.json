@@ -2,7 +2,10 @@
   "permissions": {
     "allow": [
       "Bash(php artisan make:migration:*)",
-      "Bash(mkdir:*)"
+      "Bash(mkdir:*)",
+      "Bash(find:*)",
+      "Bash(php artisan:*)",
+      "Bash(/usr/bin/php artisan:*)"
     ],
     "deny": []
   }

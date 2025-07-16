@@ -22,6 +22,8 @@ Route::controller(SiteController::class)->group(function () {
     Route::get('/produtos/{slug}', 'productsByCategory')->name('site.products.category');
     Route::get('/produto/{slug}', 'productDetail')->name('site.product.detail');
     Route::get('/sobre', 'about')->name('site.about');
+    Route::get('/servicos', 'services')->name('site.services');
+    Route::get('/sustentabilidade', 'sustainability')->name('site.sustainability');
 });
 
 Route::controller(AuthController::class)->prefix('auth')->group(function () {

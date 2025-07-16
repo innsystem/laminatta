@@ -91,4 +91,14 @@ class SiteController extends Controller
     {
         return view('site.pages.about');
     }
+
+    public function services()
+    {
+        return view('site.pages.services');
+    }
+
+    public function sustainability()
+    {
+        return view('site.pages.sustainability');
+    }
 }
