@@ -21,10 +21,11 @@ class DatabaseSeeder extends Seeder
         $this->call(StatusesSeeder::class);
         $this->call(IntegrationsSeeder::class);
 
-        $this->call(PagesSeeder::class);
         $this->call(ServiceSeeder::class);
         $this->call(PortfoliosSeeder::class);
         $this->call(TestimonialsSeeder::class);
+        $this->call(CategoriesSeeder::class);
+        $this->call(ProductsSeeder::class);
 
         // $this->call(InvoicesSeeder::class);        
         // $this->call(TransactionsSeeder::class);        

@@ -104,6 +104,14 @@ use App\Http\Controllers\Api\CommanderController;
 Route::post('commander/create', [CommanderController::class, 'create']);
 Route::post('commander/migrate', [CommanderController::class, 'migrate']);
 
+// Category
+use App\Http\Controllers\Api\CategoryController;
+Route::apiResource('categories', CategoryController::class);
+
+// Product
+use App\Http\Controllers\Api\ProductController;
+Route::apiResource('products', ProductController::class);
+
 // Importação de dados
 use App\Http\Controllers\Api\ImportController;
 Route::post('import/data', [ImportController::class, 'importData']);

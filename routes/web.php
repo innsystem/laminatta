@@ -16,6 +16,11 @@ Route::controller(SiteController::class)->group(function () {
     Route::get('/pages/{slug}', 'pageShow')->name('site.pages.show');
     Route::get('/services/{slug}', 'serviceShow')->name('site.services.show');
     Route::get('/portfolios/{slug}', 'portfolioShow')->name('site.portfolios.show');
+    
+    // Categories and Products public routes
+    Route::get('/categorias', 'categoriesIndex')->name('site.categories.index');
+    Route::get('/produtos', 'productsIndex')->name('site.products.index');
+    Route::get('/produtos/categoria/{slug}', 'productsByCategory')->name('site.products.category');
 });
 
 Route::controller(AuthController::class)->prefix('auth')->group(function () {
@@ -193,22 +198,6 @@ Route::prefix('admin')->group(function () {
             Route::get('/{id}/edit', 'edit')->name('admin.integrations.edit')->middleware('permission:admin.integrations.edit');
             Route::post('/{id}/update', 'update')->name('admin.integrations.update')->middleware('permission:admin.integrations.update');
             Route::post('/{id}/delete', 'delete')->name('admin.integrations.delete')->middleware('permission:admin.integrations.delete');
-
-            Route::prefix('{slug}/playground')->controller(IntegrationsPlaygroundController::class)->group(function () {
-                Route::get('/', 'index')->name('admin.integrations.playground.index');
-                Route::get('/load', 'load')->name('admin.integrations.playground.load');
-                Route::post('/createProduct', 'createProduct')->name('admin.integrations.playground.createProduct');
-            });
-        });
-
-        Route::prefix('integration_categories')->controller(IntegrationCategoriesController::class)->group(function () {
-            Route::get('/', 'index')->name('admin.integration_categories.index');
-            Route::get('/load', 'load')->name('admin.integration_categories.load');
-            Route::get('/create', 'create')->name('admin.integration_categories.create');
-            Route::post('/store', 'store')->name('admin.integration_categories.store');
-            Route::get('/{id}/edit', 'edit')->name('admin.integration_categories.edit');
-            Route::post('/{id}/update', 'update')->name('admin.integration_categories.update');
-            Route::post('/{id}/delete', 'delete')->name('admin.integration_categories.delete');
         });
 
         Route::prefix('testimonials')->controller(TestimonialsController::class)->group(function () {
@@ -274,6 +263,30 @@ Route::prefix('admin')->group(function () {
             Route::post('/{id}/update', 'update')->name('admin.bank_accounts.update')->middleware('permission:admin.bank_accounts.update');
             Route::post('/{id}/delete', 'delete')->name('admin.bank_accounts.delete')->middleware('permission:admin.bank_accounts.delete');
             Route::get('/users-search', 'usersSearch')->name('admin.bank_accounts.users_search');
+        });
+
+        // Categories
+        Route::prefix('categories')->controller(CategoriesController::class)->group(function () {
+            Route::get('/', 'index')->name('admin.categories.index')->middleware('permission:admin.categories.index');
+            Route::get('/load', 'load')->name('admin.categories.load')->middleware('permission:admin.categories.load');
+            Route::get('/create', 'create')->name('admin.categories.create')->middleware('permission:admin.categories.create');
+            Route::post('/store', 'store')->name('admin.categories.store')->middleware('permission:admin.categories.store');
+            Route::get('/{id}/edit', 'edit')->name('admin.categories.edit')->middleware('permission:admin.categories.edit');
+            Route::post('/{id}/update', 'update')->name('admin.categories.update')->middleware('permission:admin.categories.update');
+            Route::post('/{id}/delete', 'delete')->name('admin.categories.delete')->middleware('permission:admin.categories.delete');
+            Route::post('/upload-image', 'uploadImage')->name('admin.categories.uploadImage')->middleware('permission:admin.categories.store');
+        });
+
+        // Products
+        Route::prefix('products')->controller(ProductsController::class)->group(function () {
+            Route::get('/', 'index')->name('admin.products.index')->middleware('permission:admin.products.index');
+            Route::get('/load', 'load')->name('admin.products.load')->middleware('permission:admin.products.load');
+            Route::get('/create', 'create')->name('admin.products.create')->middleware('permission:admin.products.create');
+            Route::post('/store', 'store')->name('admin.products.store')->middleware('permission:admin.products.store');
+            Route::get('/{id}/edit', 'edit')->name('admin.products.edit')->middleware('permission:admin.products.edit');
+            Route::post('/{id}/update', 'update')->name('admin.products.update')->middleware('permission:admin.products.update');
+            Route::post('/{id}/delete', 'delete')->name('admin.products.delete')->middleware('permission:admin.products.delete');
+            Route::post('/upload-image', 'uploadImage')->name('admin.products.uploadImage')->middleware('permission:admin.products.store');
         });
 
         // Import Tool

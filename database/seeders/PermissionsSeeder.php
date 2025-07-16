@@ -163,6 +163,22 @@ class PermissionsSeeder extends Seeder
             ['title' => 'Editar banco', 'key' => 'admin.bank_accounts.edit', 'type' => 'bank_accounts', 'created_at' => now(), 'updated_at' => now()],
             ['title' => 'Atualizar banco', 'key' => 'admin.bank_accounts.update', 'type' => 'bank_accounts', 'created_at' => now(), 'updated_at' => now()],
             ['title' => 'Excluir banco', 'key' => 'admin.bank_accounts.delete', 'type' => 'bank_accounts', 'created_at' => now(), 'updated_at' => now()],
+            // categories
+            ['title' => 'Visualizar categorias', 'key' => 'admin.categories.index', 'type' => 'categories', 'created_at' => now(), 'updated_at' => now()],
+            ['title' => 'Carregar categorias', 'key' => 'admin.categories.load', 'type' => 'categories', 'created_at' => now(), 'updated_at' => now()],
+            ['title' => 'Criar categoria', 'key' => 'admin.categories.create', 'type' => 'categories', 'created_at' => now(), 'updated_at' => now()],
+            ['title' => 'Salvar categoria', 'key' => 'admin.categories.store', 'type' => 'categories', 'created_at' => now(), 'updated_at' => now()],
+            ['title' => 'Editar categoria', 'key' => 'admin.categories.edit', 'type' => 'categories', 'created_at' => now(), 'updated_at' => now()],
+            ['title' => 'Atualizar categoria', 'key' => 'admin.categories.update', 'type' => 'categories', 'created_at' => now(), 'updated_at' => now()],
+            ['title' => 'Excluir categoria', 'key' => 'admin.categories.delete', 'type' => 'categories', 'created_at' => now(), 'updated_at' => now()],
+            // products
+            ['title' => 'Visualizar produtos', 'key' => 'admin.products.index', 'type' => 'products', 'created_at' => now(), 'updated_at' => now()],
+            ['title' => 'Carregar produtos', 'key' => 'admin.products.load', 'type' => 'products', 'created_at' => now(), 'updated_at' => now()],
+            ['title' => 'Criar produto', 'key' => 'admin.products.create', 'type' => 'products', 'created_at' => now(), 'updated_at' => now()],
+            ['title' => 'Salvar produto', 'key' => 'admin.products.store', 'type' => 'products', 'created_at' => now(), 'updated_at' => now()],
+            ['title' => 'Editar produto', 'key' => 'admin.products.edit', 'type' => 'products', 'created_at' => now(), 'updated_at' => now()],
+            ['title' => 'Atualizar produto', 'key' => 'admin.products.update', 'type' => 'products', 'created_at' => now(), 'updated_at' => now()],
+            ['title' => 'Excluir produto', 'key' => 'admin.products.delete', 'type' => 'products', 'created_at' => now(), 'updated_at' => now()],
             // import
             ['title' => 'Visualizar importação', 'key' => 'admin.import.index', 'type' => 'import', 'created_at' => now(), 'updated_at' => now()],
             ['title' => 'Importar dados', 'key' => 'admin.import.data', 'type' => 'import', 'created_at' => now(), 'updated_at' => now()],

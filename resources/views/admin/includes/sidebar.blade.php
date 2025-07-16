@@ -151,17 +151,20 @@
 </li>
 @endif
 
+@if (auth()->user()->hasPermission('admin.categories.index'))
 <li class="side-nav-item">
-    <a data-bs-toggle="collapse" href="#sidebarShopee" aria-expanded="false" aria-controls="sidebarShopee" class="side-nav-link">
-        <i class="ri-exchange-dollar-line"></i>
-        <span> Shopee </span>
-        <span class="menu-arrow"></span>
+    <a href="{{ route('admin.categories.index') }}" class="side-nav-link">
+        <i class="ri-list-settings-line"></i>
+        <span> Categorias </span>
     </a>
-    <div class="collapse" id="sidebarShopee">
-        <ul class="side-nav-second-level">
-            <li><a href="{{ route('admin.integrations.playground.index', 'shopee') }}"><i class="ri-play-circle-line"></i> Playground</a></li>
-            <li><a href="{{ route('admin.integration_categories.index') }}"><i class="ri-list-settings-line"></i> Categorias</a></li>
-            <li><a href="https://affiliate.shopee.com.br/open_api/list" target="_Blank"><i class="ri-cloud-windy-line"></i> API Afiliados</a></li>
-        </ul>
-    </div>
 </li>
+@endif  
+
+@if (auth()->user()->hasPermission('admin.products.index'))
+<li class="side-nav-item">
+    <a href="{{ route('admin.products.index') }}" class="side-nav-link">
+        <i class="ri-list-settings-line"></i>
+        <span> Produtos </span>
+    </a>
+</li>
+@endif  
