@@ -1,29 +1,495 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html class="no-js" lang="zxx">
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="@yield('title')">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="@yield('title') | Lâminas Naturais e Compostas de Alta Qualidade para Seus Projetos.">
     <!-- Title-->
-    <title>@yield('title') | {{$getSettings['site_name']}}</title>
+    <title>@yield('title') | {{$getSettings['site_name'] ?? 'Laminatta'}}</title>
     <!-- Favicon-->
-    <link rel="shortcut icon" href="{{ $getSettings['favicon'] ? asset('storage/' . $getSettings['favicon']) : asset('favicon.png') }}" type="image/x-icon">
-    
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    
+    <link rel="shortcut icon" href="{{ $getSettings['favicon'] ?? '' ? asset('storage/' . $getSettings['favicon']) : asset('favicon.png') }}" type="image/x-icon">
+
+    <link rel="manifest" href="{{ asset('tpl_site/img/favicons/manifest.json') }}">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="{{ asset('tpl_site/img/favicons/ms-icon-144x144.png') }}">
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100..900;1,100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="{{ asset('tpl_site/css/bootstrap.min.css') }}">
+    <!-- Fontawesome Icon -->
+    <link rel="stylesheet" href="{{ asset('tpl_site/css/fontawesome.min.css') }}">
+    <!-- Magnific Popup -->
+    <link rel="stylesheet" href="{{ asset('tpl_site/css/magnific-popup.min.css') }}">
+    <!-- Swiper Js -->
+    <link rel="stylesheet" href="{{ asset('tpl_site/css/swiper-bundle.min.css') }}">
+    <!-- Theme Custom CSS -->
+    <link rel="stylesheet" href="{{ asset('tpl_site/css/style.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('tpl_site/css/custom_template.css?1'.rand()) }}">
+
+
     @yield('pageCSS')
 </head>
 
-<body>
+<body class="home-luxury-hotel-2 bg-repeat">
+
+    <!-- slider drag cursor -->
+    <div class="slider-drag-cursor"><i class="fal fa-arrows-up-down-left-right"></i></div>
+
+    <!--==============================
+ Preloader
+==============================-->
+    <div class="preloader ">
+        <div id="preloader" class="preloader-inner">
+            <img src="{{ asset('/galerias/favicon.png') }}" alt="img">
+            <div class="txt-loading">
+                <span data-text-preloader="L" class="letters-loading">
+                    L </span>
+                <span data-text-preloader="A" class="letters-loading">
+                    A </span>
+                <span data-text-preloader="M" class="letters-loading">
+                    M </span>
+                <span data-text-preloader="I" class="letters-loading">
+                    I </span>
+                <span data-text-preloader="N" class="letters-loading">
+                    N
+                </span>
+                <span data-text-preloader="A" class="letters-loading">
+                    A
+                </span>
+                <span data-text-preloader="T" class="letters-loading">
+                    T
+                </span>
+                <span data-text-preloader="T" class="letters-loading">
+                    T
+                </span>
+                <span data-text-preloader="A" class="letters-loading">
+                    A
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <!--==============================
+    Sidemenu
+============================== -->
+    <div class="sidemenu-wrapper ">
+        <div class="sidemenu-content allow-natural-scroll">
+            <button class="closeButton sideMenuCls"><i class="far fa-times"></i></button>
+            <div class="sidemenu-layout">
+                <div class="th-side-menu">
+                    <div class="side-logo">
+                        <a href="index.html"><img src="{{ asset('/galerias/logo_laminatta.png') }}" alt="Laminatta"></a>
+                    </div>
+                    <ul>
+                        <li class="menu-item-has-children">
+                            <a href="index.html">Home</a>
+                            <ul class="sub-menu">
+                                <li><a href="index.html">Home Lâminas Modernas</a></li>
+                                <li><a href="home-2.html">Home Lâminas Compostas</a></li>
+                                <li><a href="home-3.html">Home Lâminas Naturais</a></li>
+                                <li><a href="home-4.html">Home Lâminas Diversas</a></li>
+                                <li><a href="home-5.html">Home Projetos</a></li>
+                            </ul>
+                        </li>
+                        <li class="menu-item-has-children">
+                            <a href="#">Todas as Lâminas</a>
+                            <ul class="sub-menu">
+                                <li><a href="room.html">Lâminas e Painéis</a></li>
+                                <li><a href="room-details.html">Detalhes da Lâmina</a></li>
+                            </ul>
+                        </li>
+                        <li class="menu-item-has-children">
+                            <a href="#">Nossos Serviços</a>
+                            <ul class="sub-menu">
+                                <li><a href="service.html">Nossos Serviços</a></li>
+                                <li><a href="service-details.html">Detalhes do Serviço</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="gallery.html">Galeria</a></li>
+                        <li><a href="about.html">Sobre Nós</a></li>
+                        <li><a href="team.html">Equipe</a></li>
+                        <li><a href="team-details.html">Detalhes da Equipe</a></li>
+                        <li><a href="pricing.html">Planos</a></li>
+                        <li class="menu-item-has-children">
+                            <a href="#">Blog</a>
+                            <ul class="sub-menu">
+                                <li><a href="blog.html">Blog</a></li>
+                                <li><a href="blog-grid.html">Blog em Grade</a></li>
+                                <li><a href="blog-details.html">Detalhes do Blog</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="contact.html">Fale Conosco</a></li>
+                    </ul>
+
+                </div>
+                <div class="widget side-menu-contact pt-80 footer-widget"
+                    data-bg-src="{{ asset('tpl_site/img/pages/contact_bg_img.jpg') }}">
+                    <h3 class="widget_title">Entre em Contato</h3>
+                    <div class="th-widget-contact">
+                        <div class="info-box">
+                            <div class="box-icon">
+                                <i class="fal fa-location-dot"></i>
+                            </div>
+                            <p class="box-text">Av. Principal, 123, Cidade, Estado, País</p>
+                        </div>
+                        <div class="info-box">
+                            <div class="box-icon">
+                                <i class="fal fa-phone"></i>
+                            </div>
+                            <p class="box-text">
+                                <a href="tel:+01234567890" class="box-link">+01 234 567 890</a>
+                                <a href="tel:+09876543210" class="box-link">+09 876 543 210</a>
+                            </p>
+                        </div>
+                        <div class="info-box">
+                            <div class="box-icon">
+                                <i class="fal fa-envelope"></i>
+                            </div>
+                            <p class="box-text">
+                                <a href="mailto:mailinfo00@laminatta.com" class="box-link">contato@laminatta.com</a>
+                                <a href="mailto:support24@laminatta.com" class="box-link">suporte24@laminatta.com</a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="mt-50">
+                        <a href="contact.html" class="th-btn th-icon">SOLICITAR ORÇAMENTO</a>
+                    </div>
+                </div>
+                <div class="widget menu-rooms-area footer-widget">
+                    <h3 class="h4 text-center">Descubra Nossas Lâminas</h3>
+                    <div class="menu-rooms-list">
+                        <a class="menu-room-link" href="room-details.html">
+                            <div class="menu-room-image global-img">
+                                <img src="{{ asset('tpl_site/img/pages/menu-room-1.jpg') }}" alt="Galeria de Lâminas">
+                                <div class="menu-room-content">
+                                    <h3 class="box-title">Lâmina Carvalho Branco</h3>
+                                </div>
+                            </div>
+                        </a>
+                        <a class="menu-room-link" href="room-details.html">
+                            <div class="menu-room-image global-img">
+                                <img src="{{ asset('tpl_site/img/pages/menu-room-2.jpg') }}" alt="Galeria de Lâminas">
+                                <div class="menu-room-content">
+                                    <h3 class="box-title">Lâmina Carvalho Vermelho</h3>
+                                </div>
+                            </div>
+                        </a>
+                        <a class="menu-room-link" href="room-details.html">
+                            <div class="menu-room-image global-img">
+                                <img src="{{ asset('tpl_site/img/pages/menu-room-3.jpg') }}" alt="Galeria de Lâminas">
+                                <div class="menu-room-content">
+                                    <h3 class="box-title">Lâmina Nogueira Americana</h3>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!--==============================
+	Header Area
+==============================-->
+    <header class="th-header header-layout4 ">
+        <div class="header-top d-none d-lg-block">
+            <div class="container th-container2">
+                <div class="row justify-content-center justify-content-lg-between align-items-center gy-2">
+                    <div class="col-auto">
+                        <div class="header-links d-none d-lg-inline-block">
+                            <ul>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <div class="header-links">
+                            <ul>
+                                
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="sticky-wrapper">
+            <!-- Main Menu Area -->
+            <div class="menu-area">
+                <div class="container th-container2">
+                    <div class="row align-items-center justify-content-between">
+                        <div class="col-auto d-sm-block d-none">
+                            <div class="header-wrapp">
+                                <div class="header-button">
+                                    <a href="#" class="simple-btn sideMenuToggler"><i
+                                            class="fa-sharp-duotone far fa-bars me-2"></i><span
+                                            class="menu">MENU</span></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-auto ms-auto d-none d-xl-block">
+                            <div class="header-wrapp">
+                                <nav class="main-menu">
+                                    <ul>
+                                        <li>
+                                            <a href="room.html">EMPRESA</a>
+                                        </li>
+                                        <li>
+                                            <a href="service-details.html">LÂMINAS</a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <div class="header-logo">
+                                <a href="index.html">
+                                    <img src="{{ asset('/galerias/logo_laminatta_white.png') }}" alt="Laminatta">
+                                </a>
+                                <div class="bg-shape" data-mask-src="{{ asset('tpl_site/img/logo-shape2.png') }}"></div>
+                            </div>
+                        </div>
+                        <div class="col-auto me-auto d-none d-xl-block">
+                            <div class="header-wrapp">
+                                <nav class="main-menu style3">
+                                    <ul>
+                                        <li>
+                                            <a href="about.html">SERVIÇOS</a>
+                                        </li>
+                                        <li>
+                                            <a href="event.html">SUSTENTABILIDADE</a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="th-hero-wrapper hero-3 hero-4 slider-area" id="hero">
+        <div class="swiper th-slider" id="heroSlide4" data-slider-options='{"effect":"fade","autoHeight":true}'>
+            <div class="swiper-wrapper">
+                <div class="swiper-slide" data-bg-src="{{ asset('/storage/sliders/slider_1.png') }}">
+                    <div class="hero-inner">
+                        <div class="container">
+                            <div class="hero-style4">
+                                <div class="hero-star-rating" data-ani="slideinup" data-ani-delay="0.4s">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <h1 class="hero-title" data-ani="slideinup" data-ani-delay="0.6s">Bem-vindo à Laminatta: Sua Experiência em Lâminas de Alta Qualidade </h1>
+                                <p class="hero-text" data-ani="slideinup" data-ani-delay="0.7s">A Laminatta oferece o que há de melhor em lâminas naturais e compostas, proporcionando projetos únicos e duradouros com nossa expertise em prensagem.</p>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide" data-bg-src="{{ asset('/storage/sliders/slider_2.png') }}">
+                    <div class="hero-inner">
+                        <div class="container">
+                            <div class="hero-style4">
+                                <div class="hero-star-rating" data-ani="slideinup" data-ani-delay="0.4s">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <h1 class="hero-title" data-ani="slideinup" data-ani-delay="0.6s">Lâminas Exclusivas e Sofisticadas para Seu Projeto </h1>
+                                <p class="hero-text" data-ani="slideinup" data-ani-delay="0.7s">Na Laminatta, cada lâmina é selecionada e prensada com a máxima precisão, garantindo beleza e durabilidade para transformar seus ambientes.</p>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide" data-bg-src="{{ asset('/storage/sliders/slider_1.png') }}">
+                    <div class="hero-inner">
+                        <div class="container">
+                            <div class="hero-style4">
+                                <div class="hero-star-rating" data-ani="slideinup" data-ani-delay="0.4s">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <h1 class="hero-title" data-ani="slideinup" data-ani-delay="0.6s">Descubra a Combinação Perfeita em Lâminas de Qualidade </h1>
+                                <p class="hero-text" data-ani="slideinup" data-ani-delay="0.7s">Com a Laminatta, você tem acesso a um portfólio completo de lâminas e a um serviço de prensagem profissional que elevam o nível dos seus projetos.</p>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="slider-arrow slider-prev slider-prev-bg"
+                style="background-image: url('{{ asset('/storage/sliders/slider_1.png') }}');">
+                <span class="arrow">
+                    <img src="{{ asset('tpl_site/img/icon/hero-arrow-left.svg') }}" alt="">
+                </span>
+            </button>
+            <button class="slider-arrow slider-next slider-next-bg"
+                style="background-image: url('{{ asset('/storage/sliders/slider_2.png') }}');">
+                <span class="arrow">
+                    <img src="{{ asset('tpl_site/img/icon/hero-arrow-right.svg') }}" alt="">
+                </span>
+            </button>
+        </div>
+    </div>
+
     @yield('content')
+
+    <footer class="footer-wrapper footer-layout1 footer-layout1-2 bg-light2">
+        <div class="container">
+            <div class="footer-logo">
+                <img class="bg-light2" src="{{ asset('/galerias/logo_laminatta_white.png') }}" alt="Laminatta">
+            </div>
+        </div>
+        <div class="widget-area">
+            <div class="container">
+                <div class="row justify-content-between">
+                    <div class="col-md-6 col-xl-auto">
+                        <div class="widget footer-widget footer-line">
+                            <h3 class="widget_title">Sobre a Laminatta</h3>
+                            <div class="th-widget-about style2">
+                                <p class="footer-text">Com mais de 30 anos de experiência, a Laminatta é líder no mercado de lâminas naturais e compostas, oferecendo produtos de alta qualidade e serviços especializados de prensagem. Nosso objetivo é transformar seus projetos em realidade, com excelência e durabilidade. Explore um mundo de possibilidades e tenha uma experiência agradável ao escolher a Laminatta.</p>
+                                <div class="th-social">
+                                    <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
+                                    <a href="https://www.twitter.com/"><i class="fab fa-twitter"></i></a>
+                                    <a href="https://www.linkedin.com/"><i class="fab fa-linkedin-in"></i></a>
+                                    <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
+                                    <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-xl-auto">
+                        <div class="widget widget_nav_menu footer-line footer-widget">
+                            <h3 class="widget_title"> Links Úteis</h3>
+                            <div class="menu-all-pages-container">
+                                <ul class="menu">
+                                    <li><a href="about.html">Sobre Nós</a></li>
+                                    <li><a href="room.html">Lâminas em Destaque</a></li>
+                                    <li><a href="service.html">Nossos Melhores Serviços</a></li>
+                                    <li><a href="contact.html">Solicitar Orçamento</a></li>
+                                    <li><a href="contact.html">Carreira</a></li>
+                                    <li><a href="faq.html">FAQ</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-xl-auto">
+                        <div class="widget footer-widget">
+                            <h3 class="widget_title">Entre em Contato</h3>
+                            <div class="th-widget-contact">
+                                <div class="info-box">
+                                    <div class="box-icon">
+                                        <i class="fal fa-location-dot"></i>
+                                    </div>
+                                    <p class="box-text">Av. Principal, 123, Cidade, Estado, País</p>
+                                </div>
+                                <div class="info-box">
+                                    <div class="box-icon">
+                                        <i class="fal fa-phone"></i>
+                                    </div>
+                                    <p class="box-text">
+                                        <a href="tel:+01234567890" class="box-link">+01 234 567 890</a>
+                                        <a href="tel:+09876543210" class="box-link">+09 876 543 210</a>
+                                    </p>
+                                </div>
+                                <div class="info-box">
+                                    <div class="box-icon">
+                                        <i class="fal fa-envelope"></i>
+                                    </div>
+                                    <p class="box-text">
+                                        <a href="mailto:mailinfo00@laminatta.com" class="box-link">contato@laminatta.com</a>
+                                        <a href="mailto:support24@laminatta.com" class="box-link">suporte24@laminatta.com</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copyright-wrap">
+            <div class="container">
+                <div class="row gy-2 align-items-center">
+                    <div class="col-lg-5">
+                        <p class="copyright-text">Direitos Autorais <i class="fal fa-copyright"></i> 2025 <a
+                                href="index.html">Laminatta</a>. Todos os Direitos Reservados.</p>
+                    </div>
+                    <div class="col-lg-7 text-center text-lg-end">
+                        <div class="footer-links">
+                            <ul>
+                                <li><a href="about.html">Termos de serviço</a></li>
+                                <li><a href="about.html">Política de privacidade</a></li>
+                                <li><a href="about.html">Cookies</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
 
     @yield('pageMODAL')
 
-    <!-- Bootstrap JS Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
+    <!-- Scroll To Top -->
+    <div class="scroll-top">
+        <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+            <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"
+                style="transition: stroke-dashoffset 10ms linear 0s; stroke-dasharray: 307.919, 307.919; stroke-dashoffset: 307.919;">
+            </path>
+        </svg>
+    </div>
+
+    <!--==============================
+    All Js File
+============================== -->
+    <!-- Jquery -->
+    <script src="{{ asset('tpl_site/js/vendor/jquery-3.7.1.min.js') }}"></script>
+    <!-- Swiper Js -->
+    <script src="{{ asset('tpl_site/js/swiper-bundle.min.js') }}"></script>
+    <!-- Bootstrap -->
+    <script src="{{ asset('tpl_site/js/bootstrap.min.js') }}"></script>
+    <!-- Magnific Popup -->
+    <script src="{{ asset('tpl_site/js/jquery.magnific-popup.min.js') }}"></script>
+    <!-- Counter Up -->
+    <script src="{{ asset('tpl_site/js/jquery.counterup.min.js') }}"></script>
+    <!-- Isotope Filter -->
+    <script src="{{ asset('tpl_site/js/imagesloaded.pkgd.min.js') }}"></script>
+    <script src="{{ asset('tpl_site/js/isotope.pkgd.min.js') }}"></script>
+
+    <!-- Gsap Animation -->
+    <script src="{{ asset('tpl_site/js/gsap.min.js') }}"></script>
+    <!-- ScrollTrigger -->
+    <script src="{{ asset('tpl_site/js/ScrollTrigger.min.js') }}"></script>
+    <!-- SplitText -->
+    <script src="{{ asset('tpl_site/js/SplitText.min.js') }}"></script>
+
+    <!-- 360 degree Js start -->
+    <script src="{{ asset('tpl_site/js/360.min.js') }}"></script>
+    <script src="{{ asset('tpl_site/js/panolens.min.js') }}"></script>
+
+    <!-- 360 degree Js end -->
+    <!-- Main Js File -->
+    <script src="{{ asset('tpl_site/js/main.js') }}"></script>
+
     @yield('pageJS')
 </body>
 

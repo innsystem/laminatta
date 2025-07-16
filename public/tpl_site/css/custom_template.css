@@ -1,0 +1,101 @@
+:root {
+    --title-font: 'Lato', sans-serif;
+    --body-bg: #311e11 !important;
+    --theme-color: #ffa400 !important;
+    --light-color2: #21130a !important;
+    --border-color: #180d05 !important;
+}
+
+.home-luxury-hotel-2 {
+    --body-bg: #311e11 !important;
+}
+
+.header-layout4 .header-top {
+    background: var(--light-color2);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.header-layout4 .menu-area {
+    background: var(--body-bg);
+    border-bottom: 1px solid var(--border-color);
+}
+
+
+.header-layout4 .th-btn2 {
+    border-color: var(--border-color);
+}
+
+.header-layout4 .header-logo img {
+    max-width: 100px;
+}
+
+.room-box.style2 .box-img:before {
+    display: none;
+    opacity: 0;
+}
+
+.room-box.style2 .box-img img {
+    height: 450px;
+    border-radius: 20px;
+}
+
+.offer-slider5 .swiper-slide {
+    margin: 0;
+    padding: 0 10px;
+    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+    will-change: transform, width;
+    box-sizing: border-box;
+}
+
+/* Suavizar transições do room-box */
+.offer-slider5 .room-box.style2 {
+    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    will-change: transform;
+}
+
+/* Melhorar performance das transições dos elementos internos */
+.offer-slider5 .room-box.style2 .box-content,
+.offer-slider5 .room-box.style2 .box-wrapp,
+.offer-slider5 .room-box.style2 .box-title-area {
+    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: transform, opacity;
+}
+
+/* Evitar bordas e tremor durante as transições */
+.offer-slider5 .swiper-slide,
+.offer-slider5 .room-box.style2,
+.offer-slider5 .room-box.style2 .box-img,
+.offer-slider5 .room-box.style2 .box-img img {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* Garantir transições suaves nas mudanças de largura */
+.offer-slider5 .swiper-slide.swiper-slide-active {
+    transition: width 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+}
+
+/* Corrigir problemas de container durante transições */
+.offer-slider5 .swiper-wrapper {
+    transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.footer-layout1 .footer-logo img {
+    max-width: 120px;
+}
+
+.footer-layout1-2 .footer-logo:after,
+.footer-layout1-2 .footer-logo:before {
+    background: var(--theme-color);
+}
+
+.scroll-top svg {
+    background: var(--body-bg);
+}
+
+.scroll-top svg:hover {
+    background: var(--border-color);
+}

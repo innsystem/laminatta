@@ -14,22 +14,7 @@ class SiteController extends Controller
 
     public function index()
     {
-        return view('site.landing');
-    }
-
-    public function grupos()
-    {
-        return view('site.grupos');
-    }
-
-    public function site()
-    {
-        $pages = Page::where('status', 1)->get();
-        $services = Service::where('status', 1)->get();
-        $portfolios = Portfolio::where('status', 1)->get();
-        $testimonials = Testimonial::where('status', 1)->get();
-
-        return view('site.pages.home', compact('pages', 'services', 'portfolios', 'testimonials'));
+        return view('site.pages.home');
     }
 
     public function pageShow($slug)
