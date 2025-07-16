@@ -19,7 +19,6 @@ Route::controller(SiteController::class)->group(function () {
     
     // Categories and Products public routes
     Route::get('/categorias', 'categoriesIndex')->name('site.categories.index');
-    Route::get('/produtos', 'productsIndex')->name('site.products.index');
     Route::get('/produtos/{slug}', 'productsByCategory')->name('site.products.category');
     Route::get('/produto/{slug}', 'productDetail')->name('site.product.detail');
 });

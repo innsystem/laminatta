@@ -72,14 +72,7 @@
     <div class="container">
         <div class="about-wrap4">
             <div class="row gx-0 gy-40">
-                <div class="col-xxl-3">
-                    <div class="img-box7">
-                        <div class="img1">
-                            <img src="{{ asset('/storage/abouts/image_404-633.png') }}" alt="imagem da Laminatta">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xxl-9">
+                <div class="col-12">
                     <div class="about-wrap4-right">
                         <div class="about-wrap4-content">
                             <div class="about-content-wrap">

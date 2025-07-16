@@ -86,13 +86,13 @@
             <div class="sidemenu-layout">
                 <div class="th-side-menu">
                     <div class="side-logo">
-                        <a href="index.html"><img src="{{ asset('/galerias/logo_laminatta.png') }}" alt="Laminatta" style="max-width:120px;"></a>
+                        <a href="{{ route('site.index') }}"><img src="{{ asset('/galerias/logo_laminatta.png') }}" alt="Laminatta" style="max-width:120px;"></a>
                     </div>
                     <ul>
                         <li class="menu-item-has-children">
-                            <a href="index.html">Home</a>
+                            <a href="{{ route('site.index') }}">Home</a>
                             <ul class="sub-menu">
-                                <li><a href="index.html">Home Lâminas Modernas</a></li>
+                                <li><a href="{{ route('site.index') }}">Home Lâminas Modernas</a></li>
                                 <li><a href="home-2.html">Home Lâminas Compostas</a></li>
                                 <li><a href="home-3.html">Home Lâminas Naturais</a></li>
                                 <li><a href="home-4.html">Home Lâminas Diversas</a></li>
@@ -217,7 +217,7 @@
                         </div>
                         <div class="col-auto">
                             <div class="header-logo">
-                                <a href="index.html">
+                                <a href="{{ route('site.index') }}">
                                     <img src="{{ asset('/galerias/logo_laminatta_white.png') }}" alt="Laminatta">
                                 </a>
                                 <div class="bg-shape" data-mask-src="{{ asset('tpl_site/img/logo-shape2.png') }}"></div>
@@ -324,7 +324,7 @@
                 <div class="row gy-2 align-items-center">
                     <div class="col-lg-5">
                         <p class="copyright-text">Direitos Autorais <i class="fal fa-copyright"></i> 2025 <a
-                                href="index.html">Laminatta</a>. Todos os Direitos Reservados.</p>
+                                href="{{ route('site.index') }}">Laminatta</a>. Todos os Direitos Reservados.</p>
                     </div>
                     <div class="col-lg-7 text-center text-lg-end">
                         <div class="footer-links">

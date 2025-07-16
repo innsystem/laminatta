@@ -25,12 +25,12 @@
         @if(count($categories) > 0)
             @foreach($categories as $category)
             <div class="col-md-4 mb-4">
-                <div class="card-laminas h-100">
+                <div class="card-laminas h-100 px-0 px-lg-4">
                     @if($category->image)
-                    <a href="{{ route('site.products.category', $category->slug) }}"><img src="{{ asset('storage/'.$category->image) }}" class="card-img-top" alt="{{ $category->title }}" style="height: 400px;object-fit: cover;border-radius: 10px;box-shadow: 0 0 20px rgba(0,0,0,0.2);"></a>
+                    <a href="{{ route('site.products.category', $category->slug) }}"><img src="{{ asset('storage/'.$category->image) }}" class="card-img-top" alt="{{ $category->title }}" style="height: 600px;object-fit: cover;border-radius: 10px;box-shadow: 0 0 20px rgba(0,0,0,0.2);"></a>
                     @endif
                     <div class="card-body">
-                        <h5 class="card-title text-center"><a href="{{ route('site.products.category', $category->slug) }}">{{ $category->title }}</a></h5>
+                        <h4 class="card-title text-center"><a href="{{ route('site.products.category', $category->slug) }}">{{ $category->title }}</a></h4>
                     </div>
                 </div>
             </div>

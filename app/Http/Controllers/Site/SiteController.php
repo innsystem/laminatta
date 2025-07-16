@@ -62,14 +62,6 @@ class SiteController extends Controller
         return view('site.pages.categories', compact('categories'));
     }
 
-    public function productsIndex()
-    {
-        $products = Product::active()->with('category')->get();
-        $categories = Category::active()->ordered()->get();
-
-        return view('site.pages.products', compact('products', 'categories'));
-    }
-
     public function productsByCategory($slug)
     {
         $category = Category::where('slug', $slug)->active()->first();
