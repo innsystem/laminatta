@@ -107,23 +107,3 @@ Route::post('commander/migrate', [CommanderController::class, 'migrate']);
 // Importação de dados
 use App\Http\Controllers\Api\ImportController;
 Route::post('import/data', [ImportController::class, 'importData']);
-
-// Category
-use App\Http\Controllers\Api\CategoryController;
-
-Route::apiResource('categories', CategoryController::class);
-
-// Product
-use App\Http\Controllers\Api\ProductController;
-
-Route::get('products/search', [ProductController::class, 'search']);
-Route::get('products/recent', [ProductController::class, 'recent']);
-Route::get('products/promotions', [ProductController::class, 'promotions']);
-Route::post('products/format-whatsapp', [ProductController::class, 'formatWhatsAppMessage']);
-Route::apiResource('products', ProductController::class);
-
-// Facebook Catalog
-use App\Http\Controllers\Api\FacebookCatalogController;
-
-Route::post('facebook/sync-catalog', [FacebookCatalogController::class, 'syncCatalog']);
-Route::post('facebook/sync-product/{productId}', [FacebookCatalogController::class, 'syncProduct']);

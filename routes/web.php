@@ -258,31 +258,6 @@ Route::prefix('admin')->group(function () {
             Route::post('/{id}/delete', 'delete')->name('admin.transactions.delete')->middleware('permission:admin.transactions.delete');
         });
 
-        Route::prefix('categories')->controller(CategoriesController::class)->group(function () {
-            Route::get('/', 'index')->name('admin.categories.index')->middleware('permission:admin.categories.index');
-            Route::get('/load', 'load')->name('admin.categories.load')->middleware('permission:admin.categories.load');
-            Route::get('/create', 'create')->name('admin.categories.create')->middleware('permission:admin.categories.create');
-            Route::post('/store', 'store')->name('admin.categories.store')->middleware('permission:admin.categories.store');
-            Route::get('/{id}/edit', 'edit')->name('admin.categories.edit')->middleware('permission:admin.categories.edit');
-            Route::post('/{id}/update', 'update')->name('admin.categories.update')->middleware('permission:admin.categories.update');
-            Route::post('/{id}/delete', 'delete')->name('admin.categories.delete')->middleware('permission:admin.categories.delete');
-        });
-
-        Route::prefix('products')->controller(ProductsController::class)->group(function () {
-            Route::get('/', 'index')->name('admin.products.index')->middleware('permission:admin.products.index');
-            Route::get('/load', 'load')->name('admin.products.load')->middleware('permission:admin.products.load');
-            Route::get('/create', 'create')->name('admin.products.create')->middleware('permission:admin.products.create');
-            Route::post('/store', 'store')->name('admin.products.store')->middleware('permission:admin.products.store');
-            Route::get('/{id}/edit', 'edit')->name('admin.products.edit')->middleware('permission:admin.products.edit');
-            Route::post('/{id}/update', 'update')->name('admin.products.update')->middleware('permission:admin.products.update');
-            Route::post('/{id}/delete', 'delete')->name('admin.products.delete')->middleware('permission:admin.products.delete');
-            Route::post('/{id}/generate-image', 'generateImageStory')->name('admin.products.generateImageStory');
-            Route::post('/{id}/generate-image-feed', 'generateImageFeed')->name('admin.products.generateImageFeed');
-            Route::post('/{id}/facebook-catalog', 'facebookCatalog')->name('admin.products.facebookCatalog');
-            Route::post('/{id}/publish-product-group', 'publishProductGroup')->name('admin.products.publishProductGroup');
-            Route::get('/generateSuggestions', 'generateSuggestions')->name('admin.products.generateSuggestions');
-        });
-
         // Log Viewer
         Route::prefix('logs')->controller(LogsController::class)->group(function () {
             Route::get('/', 'index')->name('admin.logs.index')->middleware('permission:admin.logs.index');

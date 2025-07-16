@@ -7,8 +7,6 @@ use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
 use App\Jobs\ProcessWebhookJob;
 use App\Jobs\QueueJob;
-use App\Jobs\ProcessProductQueueJob;
-use App\Jobs\ProcessProductImageGenerateJob;
 use App\Jobs\GenerateDailyInvoiceJob;
 
 class Kernel extends ConsoleKernel
@@ -24,16 +22,6 @@ class Kernel extends ConsoleKernel
 
         // Processamento dos WebHooks Pendentes (table: webhooks where status = 23)
         $schedule->job(new ProcessWebhookJob())->everyMinute();
-
-        $schedule->job(new ProcessProductQueueJob())
-            ->everyThreeHours()
-            // ->everyFifteenMinutes()
-            ->between('08:00', '22:00');
-
-        $schedule->job(new ProcessProductImageGenerateJob())
-            ->everyFourHours()
-            // ->everyMinute()
-            ->between('08:00', '21:00');
         
         // Inicia Fila de Envios em Segundo-Plano
         $schedule->job(new QueueJob())->everyMinute();
