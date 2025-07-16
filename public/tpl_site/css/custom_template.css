@@ -92,6 +92,10 @@
     background: var(--theme-color);
 }
 
+.scroll-top {
+    bottom: 70px !important;
+}
+
 .scroll-top svg {
     background: var(--body-bg);
 }

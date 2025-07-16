@@ -86,4 +86,9 @@ class SiteController extends Controller
 
         return view('site.pages.product_detail', compact('product'));
     }
+
+    public function about()
+    {
+        return view('site.pages.about');
+    }
 }

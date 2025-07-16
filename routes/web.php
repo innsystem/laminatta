@@ -21,6 +21,7 @@ Route::controller(SiteController::class)->group(function () {
     Route::get('/categorias', 'categoriesIndex')->name('site.categories.index');
     Route::get('/produtos/{slug}', 'productsByCategory')->name('site.products.category');
     Route::get('/produto/{slug}', 'productDetail')->name('site.product.detail');
+    Route::get('/sobre', 'about')->name('site.about');
 });
 
 Route::controller(AuthController::class)->prefix('auth')->group(function () {

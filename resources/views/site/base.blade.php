@@ -180,7 +180,7 @@
                     <div class="col-auto">
                         <div class="header-links">
                             <ul>
-                                
+
                             </ul>
                         </div>
                     </div>
@@ -206,7 +206,7 @@
                                 <nav class="main-menu">
                                     <ul>
                                         <li>
-                                            <a href="room.html">EMPRESA</a>
+                                            <a href="{{ route('site.about') }}">EMPRESA</a>
                                         </li>
                                         <li>
                                             <a href="{{ route('site.categories.index') }}">LÂMINAS</a>
@@ -242,7 +242,7 @@
                 </div>
             </div>
         </div>
-    </header>   
+    </header>
 
     @yield('content')
 
@@ -267,21 +267,6 @@
                                     <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
                                     <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-xl-auto">
-                        <div class="widget widget_nav_menu footer-line footer-widget">
-                            <h3 class="widget_title"> Links Úteis</h3>
-                            <div class="menu-all-pages-container">
-                                <ul class="menu">
-                                    <li><a href="about.html">Sobre Nós</a></li>
-                                    <li><a href="room.html">Lâminas em Destaque</a></li>
-                                    <li><a href="service.html">Nossos Melhores Serviços</a></li>
-                                    <li><a href="contact.html">Solicitar Orçamento</a></li>
-                                    <li><a href="contact.html">Carreira</a></li>
-                                    <li><a href="faq.html">FAQ</a></li>
-                                </ul>
                             </div>
                         </div>
                     </div>
@@ -326,14 +311,8 @@
                         <p class="copyright-text">Direitos Autorais <i class="fal fa-copyright"></i> 2025 <a
                                 href="{{ route('site.index') }}">Laminatta</a>. Todos os Direitos Reservados.</p>
                     </div>
-                    <div class="col-lg-7 text-center text-lg-end">
-                        <div class="footer-links">
-                            <ul>
-                                <li><a href="about.html">Termos de serviço</a></li>
-                                <li><a href="about.html">Política de privacidade</a></li>
-                                <li><a href="about.html">Cookies</a></li>
-                            </ul>
-                        </div>
+                    <div class="col-lg-7 text-end">
+                        <p class="copyright-text mb-0">Desenvolvido por <a href="https://innsystem.com.br" target="_Blank" class="text-reset fw-semibold"><img src="{{ asset('/innsystem-logo-light.png') }}" alt="InnSystem" style="max-width: 100px;"></a></p>
                     </div>
                 </div>
             </div>
