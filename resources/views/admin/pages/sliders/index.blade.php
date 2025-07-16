@@ -69,17 +69,43 @@
     <div class="offcanvas-body" id="modal-content-sliders">
     </div> <!-- end offcanvas-body-->
 </div> <!-- end offcanvas-->
+
+<!-- Image Cropper Modal -->
+<div class="modal fade" id="imageCropperModal" tabindex="-1" aria-labelledby="imageCropperModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="imageCropperModalLabel">Redimensionar Imagem</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" style="min-height: 500px;">
+                <div class="img-container" style="height: 500px;">
+                    <img id="cropperImage" src="" alt="Crop Image" style="max-width: 100%; max-height: 100%;">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" id="cropAndSave">Cortar e Salvar</button>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
 
 @section('pageCSS')
 <!-- Flatpickr Timepicker css -->
 <link href="{{ asset('/tpl_dashboard/vendor/flatpickr/flatpickr.min.css') }}" rel="stylesheet" type="text/css" />
+<!-- Cropper.js CSS -->
+<link href="{{ asset('/plugins/croppperjs/cropper.min.css') }}" rel="stylesheet" type="text/css" />
 @endsection
 
 @section('pageJS')
 <!-- Flatpickr Timepicker Plugin js -->
 <script src="{{ asset('/tpl_dashboard/vendor/flatpickr/flatpickr.min.js') }}"></script>
 <script src="{{ asset('/tpl_dashboard/vendor/flatpickr/l10n/pt.js') }}"></script>
+
+<!-- Cropper.js JS -->
+<script src="{{ asset('/plugins/croppperjs/cropper.min.js') }}"></script>
 
 <script>
     $(document).ready(function() {
@@ -109,13 +135,287 @@
         });
     }
 
-    function initMasks(){
-        $("#date_start, #date_end").flatpickr({
-            "dateFormat": "Y-m-d",
+    function initMasks() {
+        $(".flatpickr-datetime").flatpickr({
+            "enableTime": true,
+            "dateFormat": "d/m/Y H:i",
             "locale": "pt",
             "firstDayOfWeek": 1,
         });
+        initImageUpload();
     }
+
+    let cropper = null;
+    let currentImageFile = null;
+    let currentImageSrc = null;
+
+    function initImageUpload() {
+        $('#image-upload').hide();
+
+        $('#upload-image-btn').off('click').on('click', function() {
+            $('#image-upload').click();
+        });
+
+        $('#image-upload').off('change').on('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                currentImageFile = file;
+
+                if (file.size > 5 * 1024 * 1024) {
+                    Swal.fire({
+                        text: 'A imagem é muito grande. Por favor, selecione uma imagem menor que 5MB.',
+                        icon: 'warning',
+                        showClass: {
+                            popup: 'animate__animated animate__wobble'
+                        }
+                    });
+                    $(this).val('');
+                    return;
+                }
+
+                processImageForCropper(file);
+            }
+        });
+
+        $('#imageCropperModal').off('hidden.bs.modal').on('hidden.bs.modal', function() {
+            destroyCropper();
+        });
+    }
+
+    function processImageForCropper(file) {
+        const reader = new FileReader();
+        reader.onload = function(event) {
+            const img = new Image();
+            img.onload = function() {
+                const canvas = document.createElement('canvas');
+                const ctx = canvas.getContext('2d');
+
+                let { width, height } = img;
+                const targetAspectRatio = 16 / 9; // Target aspect ratio 16:9
+                const imageAspectRatio = width / height;
+
+                // Adjust dimensions to fit within a max size while maintaining aspect ratio
+                const maxSize = 1200; // Max dimension for cropper input
+                if (width > maxSize || height > maxSize) {
+                    if (imageAspectRatio > targetAspectRatio) {
+                        width = maxSize;
+                        height = width / imageAspectRatio;
+                    } else {
+                        height = maxSize;
+                        width = height * imageAspectRatio;
+                    }
+                }
+
+                canvas.width = width;
+                canvas.height = height;
+                ctx.drawImage(img, 0, 0, width, height);
+
+                currentImageSrc = canvas.toDataURL();
+                showCropperModal();
+            };
+            img.src = event.target.result;
+        };
+        reader.readAsDataURL(file);
+    }
+
+    function showCropperModal() {
+        destroyCropper();
+        $('#cropperImage').attr('src', currentImageSrc);
+        $('#imageCropperModal').modal('show');
+
+        setTimeout(function() {
+            initializeCropper();
+        }, 300);
+    }
+
+    function initializeCropper() {
+        const image = document.getElementById('cropperImage');
+        if (!image || !image.src) return;
+
+        cropper = new Cropper(image, {
+            aspectRatio: 16 / 9,
+            viewMode: 1,
+            dragMode: 'move',
+            autoCropArea: 1.0,
+            restore: false,
+            guides: true,
+            center: true,
+            highlight: false,
+            cropBoxMovable: true,
+            cropBoxResizable: true,
+            toggleDragModeOnDblclick: false,
+            responsive: true,
+            checkCrossOrigin: false,
+            checkOrientation: false,
+            modal: true,
+            background: true,
+            minContainerWidth: 200,
+            minContainerHeight: 200,
+            minCanvasWidth: 0,
+            minCanvasHeight: 0,
+            minCropBoxWidth: 50,
+            minCropBoxHeight: 50,
+            ready: function() {
+                const containerData = cropper.getContainerData();
+                const imageData = cropper.getImageData();
+
+                const cropBoxWidth = Math.min(imageData.width, containerData.width);
+                const cropBoxHeight = cropBoxWidth / (16 / 9);
+
+                // Ensure crop box fits within image dimensions
+                let finalWidth = cropBoxWidth;
+                let finalHeight = cropBoxHeight;
+
+                if (finalHeight > imageData.height) {
+                    finalHeight = imageData.height;
+                    finalWidth = finalHeight * (16 / 9);
+                }
+
+                const left = (imageData.width - finalWidth) / 2;
+                const top = (imageData.height - finalHeight) / 2;
+
+                cropper.setCropBoxData({
+                    left: left,
+                    top: top,
+                    width: finalWidth,
+                    height: finalHeight
+                });
+            }
+        });
+    }
+
+    function destroyCropper() {
+        if (cropper) {
+            cropper.destroy();
+            cropper = null;
+        }
+    }
+
+    function reinitializeCropper() {
+        destroyCropper();
+        setTimeout(function() {
+            initializeCropper();
+        }, 100);
+    }
+
+    $('#cropAndSave').off('click').on('click', function() {
+        if (cropper) {
+            try {
+                const canvas = cropper.getCroppedCanvas({
+                    width: 1280, // Target width for the final image
+                    height: 720, // Target height for the final image (1280 / 16 * 9)
+                    minWidth: 100,
+                    minHeight: 100,
+                    maxWidth: 1920,
+                    maxHeight: 1080,
+                    fillColor: '#fff',
+                    imageSmoothingEnabled: true,
+                    imageSmoothingQuality: 'high',
+                });
+
+                if (!canvas) {
+                    throw new Error('canvas_error');
+                }
+
+                if (canvas.width === 0 || canvas.height === 0) {
+                    throw new Error('canvas_error');
+                }
+
+                if (!canvas.toBlob) {
+                    const dataURL = canvas.toDataURL('image/jpeg', 0.85);
+                    if (!dataURL || dataURL === 'data:,') {
+                        throw new Error('canvas_error');
+                    }
+                    const blob = dataURLtoBlob(dataURL);
+                    uploadCroppedImage(blob);
+                } else {
+                    canvas.toBlob(function(blob) {
+                        if (!blob || blob.size === 0) {
+                            reinitializeCropper();
+                            return;
+                        }
+                        uploadCroppedImage(blob);
+                    }, 'image/jpeg', 0.85);
+                }
+            } catch (error) {
+                console.error('Erro no cropper:', error);
+
+                if (error.message === 'canvas_error') {
+                    reinitializeCropper();
+                } else {
+                    Swal.fire({
+                        text: 'Erro ao processar a imagem. Reinicializando o editor...',
+                        icon: 'info',
+                        timer: 1500,
+                        showClass: {
+                            popup: 'animate__animated animate__fadeInUp'
+                        }
+                    });
+                    reinitializeCropper();
+                }
+            }
+        }
+    });
+
+    function uploadCroppedImage(blob) {
+        const formData = new FormData();
+        formData.append('image', blob, 'cropped_image.jpg');
+        formData.append('_token', '{{ csrf_token() }}');
+
+        $.ajax({
+            url: '{{ route("admin.sliders.uploadImage") }}',
+            method: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            beforeSend: function() {
+                $('#cropAndSave').prop('disabled', true).html('<i class=\"fa fa-spinner fa-spin\"></i> Salvando...');
+            },
+            success: function(response) {
+                if (response.success) {
+                    $('#image').val(response.image_path);
+                    $('#preview-img').attr('src', response.image_url);
+                    $('#image-preview').show();
+                    $('#imageCropperModal').modal('hide');
+                }
+            },
+            error: function(xhr) {
+                $('#imageCropperModal').modal('hide');
+                let errorMessage = 'Erro ao carregar imagem';
+                if (xhr.responseJSON && xhr.responseJSON.message) {
+                    errorMessage += ': ' + xhr.responseJSON.message;
+                }
+                Swal.fire({
+                    text: errorMessage,
+                    icon: 'error',
+                    showClass: {
+                        popup: 'animate__animated animate__wobble'
+                    }
+                });
+            },
+            complete: function() {
+                $('#cropAndSave').prop('disabled', false).html('Cortar e Salvar');
+            }
+        });
+    }
+
+    function dataURLtoBlob(dataURL) {
+        const arr = dataURL.split(',');
+        const mime = arr[0].match(/:(.*?);/)[1];
+        const bstr = atob(arr[1]);
+        let n = bstr.length;
+        const u8arr = new Uint8Array(n);
+        while (n--) {
+            u8arr[n] = bstr.charCodeAt(n);
+        }
+        return new Blob([u8arr], { type: mime });
+    }
+
+    $(document).on('click', '#remove-image-btn', function() {
+        $('#image').val('');
+        $('#image-preview').hide();
+        $('#image-upload').val('');
+    });
 
     $(document).on("click", ".button-sliders-toggle-filters", function(e) {
         e.preventDefault();

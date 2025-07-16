@@ -86,7 +86,7 @@
             <div class="sidemenu-layout">
                 <div class="th-side-menu">
                     <div class="side-logo">
-                        <a href="index.html"><img src="{{ asset('/galerias/logo_laminatta.png') }}" alt="Laminatta"></a>
+                        <a href="index.html"><img src="{{ asset('/galerias/logo_laminatta.png') }}" alt="Laminatta" style="max-width:120px;"></a>
                     </div>
                     <ul>
                         <li class="menu-item-has-children">
@@ -130,8 +130,7 @@
                     </ul>
 
                 </div>
-                <div class="widget side-menu-contact pt-80 footer-widget"
-                    data-bg-src="{{ asset('tpl_site/img/pages/contact_bg_img.jpg') }}">
+                <div class="widget side-menu-contact pt-80 footer-widget">
                     <h3 class="widget_title">Entre em Contato</h3>
                     <div class="th-widget-contact">
                         <div class="info-box">
@@ -161,35 +160,6 @@
                     </div>
                     <div class="mt-50">
                         <a href="contact.html" class="th-btn th-icon">SOLICITAR ORÇAMENTO</a>
-                    </div>
-                </div>
-                <div class="widget menu-rooms-area footer-widget">
-                    <h3 class="h4 text-center">Descubra Nossas Lâminas</h3>
-                    <div class="menu-rooms-list">
-                        <a class="menu-room-link" href="room-details.html">
-                            <div class="menu-room-image global-img">
-                                <img src="{{ asset('tpl_site/img/pages/menu-room-1.jpg') }}" alt="Galeria de Lâminas">
-                                <div class="menu-room-content">
-                                    <h3 class="box-title">Lâmina Carvalho Branco</h3>
-                                </div>
-                            </div>
-                        </a>
-                        <a class="menu-room-link" href="room-details.html">
-                            <div class="menu-room-image global-img">
-                                <img src="{{ asset('tpl_site/img/pages/menu-room-2.jpg') }}" alt="Galeria de Lâminas">
-                                <div class="menu-room-content">
-                                    <h3 class="box-title">Lâmina Carvalho Vermelho</h3>
-                                </div>
-                            </div>
-                        </a>
-                        <a class="menu-room-link" href="room-details.html">
-                            <div class="menu-room-image global-img">
-                                <img src="{{ asset('tpl_site/img/pages/menu-room-3.jpg') }}" alt="Galeria de Lâminas">
-                                <div class="menu-room-content">
-                                    <h3 class="box-title">Lâmina Nogueira Americana</h3>
-                                </div>
-                            </div>
-                        </a>
                     </div>
                 </div>
             </div>
@@ -222,7 +192,7 @@
             <div class="menu-area">
                 <div class="container th-container2">
                     <div class="row align-items-center justify-content-between">
-                        <div class="col-auto d-sm-block d-none">
+                        <div class="col-auto d-xxl-none d-block">
                             <div class="header-wrapp">
                                 <div class="header-button">
                                     <a href="#" class="simple-btn sideMenuToggler"><i
@@ -239,7 +209,7 @@
                                             <a href="room.html">EMPRESA</a>
                                         </li>
                                         <li>
-                                            <a href="service-details.html">LÂMINAS</a>
+                                            <a href="{{ route('site.categories.index') }}">LÂMINAS</a>
                                         </li>
                                     </ul>
                                 </nav>
@@ -272,84 +242,7 @@
                 </div>
             </div>
         </div>
-    </header>
-
-    <div class="th-hero-wrapper hero-3 hero-4 slider-area" id="hero">
-        <div class="swiper th-slider" id="heroSlide4" data-slider-options='{"effect":"fade","autoHeight":true}'>
-            <div class="swiper-wrapper">
-                <div class="swiper-slide" data-bg-src="{{ asset('/storage/sliders/slider_1.png') }}">
-                    <div class="hero-inner">
-                        <div class="container">
-                            <div class="hero-style4">
-                                <div class="hero-star-rating" data-ani="slideinup" data-ani-delay="0.4s">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                </div>
-                                <h1 class="hero-title" data-ani="slideinup" data-ani-delay="0.6s">Bem-vindo à Laminatta: Sua Experiência em Lâminas de Alta Qualidade </h1>
-                                <p class="hero-text" data-ani="slideinup" data-ani-delay="0.7s">A Laminatta oferece o que há de melhor em lâminas naturais e compostas, proporcionando projetos únicos e duradouros com nossa expertise em prensagem.</p>
-
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide" data-bg-src="{{ asset('/storage/sliders/slider_2.png') }}">
-                    <div class="hero-inner">
-                        <div class="container">
-                            <div class="hero-style4">
-                                <div class="hero-star-rating" data-ani="slideinup" data-ani-delay="0.4s">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                </div>
-                                <h1 class="hero-title" data-ani="slideinup" data-ani-delay="0.6s">Lâminas Exclusivas e Sofisticadas para Seu Projeto </h1>
-                                <p class="hero-text" data-ani="slideinup" data-ani-delay="0.7s">Na Laminatta, cada lâmina é selecionada e prensada com a máxima precisão, garantindo beleza e durabilidade para transformar seus ambientes.</p>
-
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide" data-bg-src="{{ asset('/storage/sliders/slider_1.png') }}">
-                    <div class="hero-inner">
-                        <div class="container">
-                            <div class="hero-style4">
-                                <div class="hero-star-rating" data-ani="slideinup" data-ani-delay="0.4s">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                </div>
-                                <h1 class="hero-title" data-ani="slideinup" data-ani-delay="0.6s">Descubra a Combinação Perfeita em Lâminas de Qualidade </h1>
-                                <p class="hero-text" data-ani="slideinup" data-ani-delay="0.7s">Com a Laminatta, você tem acesso a um portfólio completo de lâminas e a um serviço de prensagem profissional que elevam o nível dos seus projetos.</p>
-
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <button class="slider-arrow slider-prev slider-prev-bg"
-                style="background-image: url('{{ asset('/storage/sliders/slider_1.png') }}');">
-                <span class="arrow">
-                    <img src="{{ asset('tpl_site/img/icon/hero-arrow-left.svg') }}" alt="">
-                </span>
-            </button>
-            <button class="slider-arrow slider-next slider-next-bg"
-                style="background-image: url('{{ asset('/storage/sliders/slider_2.png') }}');">
-                <span class="arrow">
-                    <img src="{{ asset('tpl_site/img/icon/hero-arrow-right.svg') }}" alt="">
-                </span>
-            </button>
-        </div>
-    </div>
+    </header>   
 
     @yield('content')
 

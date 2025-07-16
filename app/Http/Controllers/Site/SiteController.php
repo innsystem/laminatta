@@ -9,6 +9,7 @@ use App\Models\Portfolio;
 use App\Models\Testimonial;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Slider;
 use Illuminate\Http\Request;
 
 class SiteController extends Controller
@@ -16,7 +17,21 @@ class SiteController extends Controller
 
     public function index()
     {
-        return view('site.pages.home');
+        $sliders = Slider::where('status', 1)
+            ->where(function ($query) {
+                $query->whereNull('date_start')
+                    ->orWhere('date_start', '<=', now());
+            })
+            ->where(function ($query) {
+                $query->whereNull('date_end')
+                    ->orWhere('date_end', '>=', now());
+            })
+            ->orderBy('id', 'desc')
+            ->get();
+
+        $products = Product::active()->get();
+
+        return view('site.pages.home', compact('sliders', 'products'));
     }
 
     public function pageShow($slug)
@@ -67,5 +82,16 @@ class SiteController extends Controller
         $categories = Category::active()->ordered()->get();
 
         return view('site.pages.products_by_category', compact('products', 'category', 'categories'));
+    }
+
+    public function productDetail($slug)
+    {
+        $product = Product::where('slug', $slug)->active()->first();
+
+        if (!$product) {
+            abort(404);
+        }
+
+        return view('site.pages.product_detail', compact('product'));
     }
 }

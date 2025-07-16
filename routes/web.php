@@ -20,7 +20,8 @@ Route::controller(SiteController::class)->group(function () {
     // Categories and Products public routes
     Route::get('/categorias', 'categoriesIndex')->name('site.categories.index');
     Route::get('/produtos', 'productsIndex')->name('site.products.index');
-    Route::get('/produtos/categoria/{slug}', 'productsByCategory')->name('site.products.category');
+    Route::get('/produtos/{slug}', 'productsByCategory')->name('site.products.category');
+    Route::get('/produto/{slug}', 'productDetail')->name('site.product.detail');
 });
 
 Route::controller(AuthController::class)->prefix('auth')->group(function () {
@@ -218,6 +219,7 @@ Route::prefix('admin')->group(function () {
             Route::get('/{id}/edit', 'edit')->name('admin.sliders.edit')->middleware('permission:admin.sliders.edit');
             Route::post('/{id}/update', 'update')->name('admin.sliders.update')->middleware('permission:admin.sliders.update');
             Route::post('/{id}/delete', 'delete')->name('admin.sliders.delete')->middleware('permission:admin.sliders.delete');
+            Route::post('/uploadImage', 'uploadImage')->name('admin.sliders.uploadImage')->middleware('permission:admin.sliders.store');
         });
 
         Route::prefix('invoices')->controller(InvoicesController::class)->group(function () {

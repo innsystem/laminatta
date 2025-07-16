@@ -37,7 +37,7 @@
                     <input type="file" id="image-upload" class="form-control" accept="image/*">
                     <button type="button" class="btn btn-primary mt-2" id="upload-image-btn">Selecionar Imagem</button>
                     
-                    <div id="image-preview" class="mt-3" style="{{ isset($result->image) && $result->image ? 'display: block;' : 'display: none;' }}">
+                    <div id="image-preview" class="mt-3" style="display: {{ isset($result->image) && $result->image ? 'block' : 'none' }};">
                         <img id="preview-img" src="{{ isset($result->image) && $result->image ? asset('storage/' . $result->image) : '' }}" alt="Preview" style="max-width: 200px; max-height: 200px;">
                         <div class="mt-2">
                             <button type="button" class="btn btn-sm btn-danger" id="remove-image-btn">Remover</button>

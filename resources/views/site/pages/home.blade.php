@@ -3,9 +3,71 @@
 @section('title', 'Lâminas Naturais e Compostas de Alta Qualidade')
 
 @section('content')
-<!--======== / Hero Section ========--><!--==============================
-About Area  
-==============================-->
+<div class="th-hero-wrapper hero-3 hero-4 slider-area" id="hero">
+    <div class="swiper th-slider" id="heroSlide4" data-slider-options='{"effect":"fade","autoHeight":true}'>
+        <div class="swiper-wrapper">
+            @forelse($sliders as $slider)
+            <div class="swiper-slide" data-bg-src="{{ asset('storage/' . $slider->image) }}">
+                <div class="hero-inner">
+                    <div class="container">
+                        <div class="hero-style4">
+                            <div class="hero-star-rating" data-ani="slideinup" data-ani-delay="0.4s">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <h1 class="hero-title" data-ani="slideinup" data-ani-delay="0.6s">{{ $slider->title }}</h1>
+                            @if($slider->subtitle)
+                            <p class="hero-text" data-ani="slideinup" data-ani-delay="0.7s">{{ $slider->subtitle }}</p>
+                            @endif
+                            @if($slider->href)
+                            <div class="btn-group mt-1" data-ani="slideinup" data-ani-delay="0.8s">
+                                <a href="{{ $slider->href }}" class="th-btn2 th-icon" target="{{ $slider->target }}">SAIBA MAIS<i class="fas fa-arrow-right"></i></a>
+                            </div>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @empty
+            {{-- Fallback content if no sliders are available --}}
+            <div class="swiper-slide" data-bg-src="{{ asset('/storage/sliders/slider_1.png') }}">
+                <div class="hero-inner">
+                    <div class="container">
+                        <div class="hero-style4">
+                            <div class="hero-star-rating" data-ani="slideinup" data-ani-delay="0.4s">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <h1 class="hero-title" data-ani="slideinup" data-ani-delay="0.6s">Bem-vindo à Laminatta: Sua Experiência em Lâminas de Alta Qualidade </h1>
+                            <p class="hero-text" data-ani="slideinup" data-ani-delay="0.7s">A Laminatta oferece o que há de melhor em lâminas naturais e compostas, proporcionando projetos únicos e duradouros com nossa expertise em prensagem.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @endforelse
+        </div>
+
+        <button class="slider-arrow slider-prev slider-prev-bg"
+            style="background-image: url({{ asset('/storage/sliders/slider_1.png') }});">
+            <span class="arrow">
+                <img src="{{ asset('tpl_site/img/icon/hero-arrow-left.svg') }}" alt="">
+            </span>
+        </button>
+        <button class="slider-arrow slider-next slider-next-bg"
+            style="background-image: url({{ asset('/storage/sliders/slider_2.png') }});">
+            <span class="arrow">
+                <img src="{{ asset('tpl_site/img/icon/hero-arrow-right.svg') }}" alt="">
+            </span>
+        </button>
+    </div>
+</div>
+
 <div class=" overflow-hidden space" id="about-sec">
     <div class="container">
         <div class="about-wrap4">
@@ -110,79 +172,18 @@ About Area
         <div class="slider-area">
             <div class="laminas-container">
                 <div class="laminas-scroll">
-
-                    <div class="lamina-item">
+                    @forelse($products as $product)
+                    <a href="{{ route('site.product.detail', $product->slug) }}" class="lamina-item">
                         <div class="lamina-img">
-                            <img src="{{ asset('/storage/products/carvalho_branco_672-716.png') }}" alt="Carvalho Branco">
+                            <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->title }}">
                         </div>
                         <div class="lamina-title">
-                            <h3>Carvalho Branco</h3>
+                            <h3>{{ $product->title }}</h3>
                         </div>
-                    </div>
-
-                    <div class="lamina-item">
-                        <div class="lamina-img">
-                            <img src="{{ asset('/storage/products/carvalho_vermelho_672-716.png') }}" alt="Carvalho Vermelho">
-                        </div>
-                        <div class="lamina-title">
-                            <h3>Carvalho Vermelho</h3>
-                        </div>
-                    </div>
-
-                    <div class="lamina-item">
-                        <div class="lamina-img">
-                            <img src="{{ asset('/storage/products/nogueira_americana_672-716.png') }}" alt="Nogueira Americana">
-                        </div>
-                        <div class="lamina-title">
-                            <h3>Nogueira Americana</h3>
-                        </div>
-                    </div>
-
-                    <div class="lamina-item">
-                        <div class="lamina-img">
-                            <img src="{{ asset('/storage/products/carvalho_branco_672-716.png') }}" alt="Carvalho Branco">
-                        </div>
-                        <div class="lamina-title">
-                            <h3>Carvalho Branco</h3>
-                        </div>
-                    </div>
-
-                    <div class="lamina-item">
-                        <div class="lamina-img">
-                            <img src="{{ asset('/storage/products/carvalho_vermelho_672-716.png') }}" alt="Carvalho Vermelho">
-                        </div>
-                        <div class="lamina-title">
-                            <h3>Carvalho Vermelho</h3>
-                        </div>
-                    </div>
-
-                    <div class="lamina-item">
-                        <div class="lamina-img">
-                            <img src="{{ asset('/storage/products/nogueira_americana_672-716.png') }}" alt="Nogueira Americana">
-                        </div>
-                        <div class="lamina-title">
-                            <h3>Nogueira Americana</h3>
-                        </div>
-                    </div>
-
-                    <div class="lamina-item">
-                        <div class="lamina-img">
-                            <img src="{{ asset('/storage/products/carvalho_branco_672-716.png') }}" alt="Carvalho Branco">
-                        </div>
-                        <div class="lamina-title">
-                            <h3>Carvalho Branco</h3>
-                        </div>
-                    </div>
-
-                    <div class="lamina-item">
-                        <div class="lamina-img">
-                            <img src="{{ asset('/storage/products/carvalho_vermelho_672-716.png') }}" alt="Carvalho Vermelho">
-                        </div>
-                        <div class="lamina-title">
-                            <h3>Carvalho Vermelho</h3>
-                        </div>
-                    </div>
-
+                    </a>
+                    @empty
+                    <p>Nenhum produto disponível no momento.</p>
+                    @endforelse
                 </div>
             </div>
         </div>

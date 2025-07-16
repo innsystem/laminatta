@@ -77,11 +77,13 @@ class SlidersController extends Controller
 
         $rules = array(
             'title' => 'required',
+            'subtitle' => 'nullable',
             'image' => 'required',
             'status' => 'required',
         );
         $messages = array(
             'title.required' => 'title é obrigatório',
+            'subtitle.nullable' => 'subtitle pode ser nulo',
             'image.required' => 'image é obrigatório',
             'status.required' => 'status é obrigatório',
         );
@@ -118,6 +120,7 @@ class SlidersController extends Controller
         // 'email'         => "unique:sliders,email,$id,id",
         $rules = array(
             'title' => 'required',
+            'subtitle' => 'nullable',
             'href' => 'nullable',
             'target' => 'required',
             'image' => 'required',
@@ -125,6 +128,7 @@ class SlidersController extends Controller
         );
         $messages = array(
             'title.required' => 'title é obrigatório',
+            'subtitle.nullable' => 'subtitle pode ser nulo',
             'href.required' => 'href é obrigatório',
             'href.nullable' => 'href pode ser nulo',
             'target.required' => 'target é obrigatório',
@@ -153,5 +157,29 @@ class SlidersController extends Controller
         $this->sliderService->deleteSlider($id);
 
         return response()->json($this->name . ' excluído com sucesso', 200);
+    }
+
+    public function uploadImage(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'image' => 'required|image|max:5120', // 5MB max
+        ], [
+            'image.required' => 'A imagem é obrigatória.',
+            'image.image' => 'O arquivo deve ser uma imagem.',
+            'image.max' => 'A imagem não pode ser maior que 5MB.',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['message' => $validator->errors()->first()], 422);
+        }
+
+        $image = $request->file('image');
+        $imagePath = $image->store('sliders', 'public');
+
+        return response()->json([
+            'success' => true,
+            'image_path' => $imagePath,
+            'image_url' => asset('storage/' . $imagePath)
+        ]);
     }
 }
