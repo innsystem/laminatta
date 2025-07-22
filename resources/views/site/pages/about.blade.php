@@ -37,10 +37,12 @@
                 <div class="cta-section">
                     <h2>Pronto para realizar seu projeto?</h2>
                     <p>Entre em contato conosco e transforme sua ideia em realidade</p>
-                    <a href="{{ route('site.index') }}" class="cta-button">
-                        <i class="fas fa-phone"></i>
+                    @if(isset($getSettings['cellphone']) && $getSettings['cellphone'] != '')
+                    <a href="https://wa.me/@formatPhone($getSettings['cellphone'])" target="_Blank" class="cta-button">
+                        <i class="fab fa-whatsapp"></i>
                         Solicitar Orçamento
                     </a>
+                    @endif
                 </div>
             </div>
         </div>

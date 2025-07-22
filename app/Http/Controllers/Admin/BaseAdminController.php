@@ -143,6 +143,11 @@ class BaseAdminController extends Controller
             'hour_open' => $getSetting->getValue(('hour_open')),
             'client_id' => $getSetting->getValue(('client_id')),
             'client_secret' => $getSetting->getValue(('client_secret')),
+            'facebook' => $getSetting->getValue(('facebook')),
+            'twitter' => $getSetting->getValue(('twitter')),
+            'linkedin' => $getSetting->getValue(('linkedin')),
+            'youtube' => $getSetting->getValue(('youtube')),
+            'instagram' => $getSetting->getValue(('instagram')),
         ];
 
         return view('admin.pages.settings', compact('result'));

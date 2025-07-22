@@ -126,24 +126,33 @@
                             <p class="box-text">{{$getSettings['address']}}</p>
                         </div>
                         @endif
-                        @if(isset($getSettings['phone']) && $getSettings['phone'] != '')
+                        @if(isset($getSettings['telephone']) && $getSettings['telephone'] != '')
                         <div class="info-box">
                             <div class="box-icon">
                                 <i class="fal fa-phone"></i>
                             </div>
                             <p class="box-text">
-                                <a href="tel:{{$getSettings['phone']}}" class="box-link">{{$getSettings['phone']}}</a>
-                                <a href="tel:+09876543210" class="box-link">+09 876 543 210</a>
+                                <a href="tel:{{$getSettings['telephone']}}" class="box-link">{{$getSettings['telephone']}}</a>
                             </p>
                         </div>
                         @endif
-                        @if(isset($getSettings['email']) && $getSettings['email'] != '')
+                        @if(isset($getSettings['cellphone']) && $getSettings['cellphone'] != '')
+                        <div class="info-box">
+                            <div class="box-icon">
+                                <i class="fab fa-whasapp"></i>
+                            </div>
+                            <p class="box-text">
+                                <a href="https://wa.me/@formatPhone($getSettings['cellphone'])" target="_Blank" class="box-link">{{$getSettings['cellphone']}}</a>
+                            </p>
+                        </div>
+                        @endif
+                        @if(isset($getSettings['site_email']) && $getSettings['site_email'] != '')
                         <div class="info-box">
                             <div class="box-icon">
                                 <i class="fal fa-envelope"></i>
                             </div>
                             <p class="box-text">
-                                <a href="mailto:{{$getSettings['email']}}" class="box-link">{{$getSettings['email']}}</a>
+                                <a href="mailto:{{$getSettings['site_email']}}" class="box-link">{{$getSettings['site_email']}}</a>
                             </p>
                         </div>
                         @endif
@@ -248,11 +257,21 @@
                             <div class="th-widget-about style2">
                                 <p class="footer-text">Com mais de 30 anos de experiência, a Laminatta é líder no mercado de lâminas naturais e compostas, oferecendo produtos de alta qualidade e serviços especializados de prensagem. Nosso objetivo é transformar seus projetos em realidade, com excelência e durabilidade. Explore um mundo de possibilidades e tenha uma experiência agradável ao escolher a Laminatta.</p>
                                 <div class="th-social">
-                                    <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
-                                    <a href="https://www.twitter.com/"><i class="fab fa-twitter"></i></a>
-                                    <a href="https://www.linkedin.com/"><i class="fab fa-linkedin-in"></i></a>
-                                    <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
-                                    <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
+                                    @if(isset($getSettings['facebook']) && $getSettings['facebook'] != '')
+                                    <a href="https://www.facebook.com/{{ $getSettings['facebook'] }}" target="_Blank"><i class="fab fa-facebook-f"></i></a>
+                                    @endif
+                                    @if(isset($getSettings['twitter']) && $getSettings['twitter'] != '')
+                                    <a href="https://www.twitter.com/{{ $getSettings['twitter'] }}" target="_Blank"><i class="fab fa-twitter"></i></a>
+                                    @endif
+                                    @if(isset($getSettings['linkedin']) && $getSettings['linkedin'] != '')
+                                    <a href="https://www.linkedin.com/{{ $getSettings['linkedin'] }}" target="_Blank"><i class="fab fa-linkedin-in"></i></a>
+                                    @endif
+                                    @if(isset($getSettings['youtube']) && $getSettings['youtube'] != '')
+                                    <a href="https://www.youtube.com/{{ $getSettings['youtube'] }}" target="_Blank"><i class="fab fa-youtube"></i></a>
+                                    @endif
+                                    @if(isset($getSettings['instagram']) && $getSettings['instagram'] != '')
+                                    <a href="https://www.instagram.com/{{ $getSettings['instagram'] }}" target="_Blank"><i class="fab fa-instagram"></i></a>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -261,30 +280,44 @@
                         <div class="widget footer-widget">
                             <h3 class="widget_title">Entre em Contato</h3>
                             <div class="th-widget-contact">
+                                @if(isset($getSettings['address']) && $getSettings['address'] != '')
                                 <div class="info-box">
                                     <div class="box-icon">
                                         <i class="fal fa-location-dot"></i>
                                     </div>
-                                    <p class="box-text">Av. Principal, 123, Cidade, Estado, País</p>
+                                    <p class="box-text">{{ $getSettings['address'] }}</p>
                                 </div>
+                                @endif
+                                @if(isset($getSettings['telephone']) && $getSettings['telephone'] != '')
                                 <div class="info-box">
                                     <div class="box-icon">
                                         <i class="fal fa-phone"></i>
                                     </div>
                                     <p class="box-text">
-                                        <a href="tel:+01234567890" class="box-link">+01 234 567 890</a>
-                                        <a href="tel:+09876543210" class="box-link">+09 876 543 210</a>
+                                        <a href="tel:@formatPhone($getSettings['telephone'])" class="box-link">{{ $getSettings['telephone'] }}</a>
                                     </p>
                                 </div>
+                                @endif
+                                @if(isset($getSettings['cellphone']) && $getSettings['cellphone'] != '')
+                                <div class="info-box">
+                                    <div class="box-icon">
+                                        <i class="fab fa-whatsapp"></i>
+                                    </div>
+                                    <p class="box-text">
+                                        <a href="https://wa.me/@formatPhone($getSettings['cellphone'])" target="_Blank" class="box-link">{{ $getSettings['cellphone'] }}</a>
+                                    </p>
+                                </div>
+                                @endif
+                                @if(isset($getSettings['site_email']) && $getSettings['site_email'] != '')
                                 <div class="info-box">
                                     <div class="box-icon">
                                         <i class="fal fa-envelope"></i>
                                     </div>
                                     <p class="box-text">
-                                        <a href="mailto:mailinfo00@laminatta.com" class="box-link">contato@laminatta.com</a>
-                                        <a href="mailto:support24@laminatta.com" class="box-link">suporte24@laminatta.com</a>
+                                        <a href="mailto:{{ $getSettings['site_email'] }}" class="box-link">{{ $getSettings['site_email'] }}</a>
                                     </p>
                                 </div>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -317,6 +350,12 @@
         </svg>
     </div>
 
+    @if(isset($getSettings['cellphone']) && $getSettings['cellphone'] != '')
+    <div class="whatsapp_futuante pulsaDelay animate__animated animate__tada">
+        <a href="https://wa.me/@formatPhone($getSettings['cellphone'])" target="_Blank"><i class="fab fa-whatsapp"></i></a>
+    </div>
+    @endif
+
     <!--==============================
     All Js File
 ============================== -->
@@ -333,19 +372,6 @@
     <!-- Isotope Filter -->
     <script src="{{ asset('tpl_site/js/imagesloaded.pkgd.min.js') }}"></script>
     <script src="{{ asset('tpl_site/js/isotope.pkgd.min.js') }}"></script>
-
-    <!-- Gsap Animation -->
-    <script src="{{ asset('tpl_site/js/gsap.min.js') }}"></script>
-    <!-- ScrollTrigger -->
-    <script src="{{ asset('tpl_site/js/ScrollTrigger.min.js') }}"></script>
-    <!-- SplitText -->
-    <script src="{{ asset('tpl_site/js/SplitText.min.js') }}"></script>
-
-    <!-- 360 degree Js start -->
-    <script src="{{ asset('tpl_site/js/360.min.js') }}"></script>
-    <script src="{{ asset('tpl_site/js/panolens.min.js') }}"></script>
-
-    <!-- 360 degree Js end -->
     <!-- Main Js File -->
     <script src="{{ asset('tpl_site/js/main.js') }}"></script>
 

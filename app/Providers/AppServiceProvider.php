@@ -36,5 +36,10 @@ class AppServiceProvider extends ServiceProvider
         Blade::directive('webpUrl', function ($expression) {
             return "<?php echo App\Helpers\ImageHelper::webpUrl({$expression}); ?>";
         });
+        
+        // Blade directive para formatar telefone (remover caracteres especiais)
+        Blade::directive('formatPhone', function ($expression) {
+            return "<?php echo str_replace(['(', ')', '.', ' ', '-'], '', {$expression}); ?>";
+        });
     }
 }
