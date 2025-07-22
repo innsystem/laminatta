@@ -173,7 +173,7 @@
                         <h6 class="box-subtitle">Alta Precisão e Produtividade</h6>
                         <h3 class="box-title"><a href="service-details.html">Prensagem Térmica Profissional</a></h3>
                         <p class="box-text">Com mais de 30 anos de experiência com lâminas naturais e compostas, nossa empresa oferece um serviço de prensagem térmica altamente técnico e confiável, desenvolvido para atender as exigências da marcenaria profissional.</p>
-                        <a href="#" class="th-btn2 style2 th-icon">SAIBA MAIS</a>
+                        <a href="{{ route('site.services') }}" class="th-btn2 style2 th-icon">SAIBA MAIS</a>
                     </div>
                 </div>
             </div>
