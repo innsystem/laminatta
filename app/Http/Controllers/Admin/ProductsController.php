@@ -111,6 +111,9 @@ class ProductsController extends Controller
             return response()->json($validator->errors()->first(), 422);
         }
 
+        $result['price'] = 0;
+        $result['stock'] = 0;
+
         $product = $this->productService->createProduct($result);
 
         return response()->json($this->name . ' adicionado com sucesso', 200);
