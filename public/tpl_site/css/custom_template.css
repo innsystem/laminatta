@@ -1496,3 +1496,15 @@
         opacity: 0;
     }
 }
+
+.hero-3 .swiper-slide:before {
+    display: none !important;
+}
+
+.hero-style4 .hero-text {
+    font-size: 22px !important;
+}
+
+.hero-style4 {
+    padding: 474px 0 210px;
+}
