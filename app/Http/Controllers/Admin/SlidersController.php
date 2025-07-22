@@ -10,6 +10,7 @@ use App\Models\Status;
 use App\Models\Slider;
 use Carbon\Carbon;
 use App\Services\SliderService;
+use App\Services\ImageOptimizationService;
 
 class SlidersController extends Controller
 {
@@ -17,10 +18,12 @@ class SlidersController extends Controller
     public $folder = 'admin.pages.sliders';
 
     protected $sliderService;
+    protected $imageOptimizationService;
 
-    public function __construct(SliderService $sliderService)
+    public function __construct(SliderService $sliderService, ImageOptimizationService $imageOptimizationService)
     {
         $this->sliderService = $sliderService;
+        $this->imageOptimizationService = $imageOptimizationService;
     }
 
     public function index()
@@ -96,8 +99,13 @@ class SlidersController extends Controller
 
         if ($request->hasFile('image')) {
             $image = $request->file('image');
-            $imagePath = $image->store('sliders', 'public');
-            $result['image'] = $imagePath;
+            $imageResult = $this->processSliderImage($image);
+            if ($imageResult['success']) {
+                $result['image'] = $imageResult['data']['original']['path'];
+                $result['image_webp'] = $imageResult['data']['original']['path'];
+                $result['image_fallback'] = $imageResult['data']['fallback']['path'];
+                $result['image_responsive'] = json_encode($imageResult['data']['responsive'] ?? []);
+            }
         }
 
         $slider = $this->sliderService->createSlider($result);
@@ -143,9 +151,21 @@ class SlidersController extends Controller
         }
 
         if ($request->hasFile('image')) {
+            $slider = $this->sliderService->getSliderById($id);
+            
+            // Remover imagem antiga se existir
+            if ($slider->image) {
+                $this->imageOptimizationService->deleteImage($slider->image);
+            }
+            
             $image = $request->file('image');
-            $imagePath = $image->store('sliders', 'public');
-            $result['image'] = $imagePath;
+            $imageResult = $this->processSliderImage($image);
+            if ($imageResult['success']) {
+                $result['image'] = $imageResult['data']['original']['path'];
+                $result['image_webp'] = $imageResult['data']['original']['path'];
+                $result['image_fallback'] = $imageResult['data']['fallback']['path'];
+                $result['image_responsive'] = json_encode($imageResult['data']['responsive'] ?? []);
+            }
         }
         $slider = $this->sliderService->updateSlider($id, $result);
 
@@ -162,24 +182,76 @@ class SlidersController extends Controller
     public function uploadImage(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'image' => 'required|image|max:5120', // 5MB max
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:5120',
         ], [
             'image.required' => 'A imagem é obrigatória.',
             'image.image' => 'O arquivo deve ser uma imagem.',
+            'image.mimes' => 'Apenas imagens JPG, PNG, GIF e WebP são permitidas.',
             'image.max' => 'A imagem não pode ser maior que 5MB.',
         ]);
 
         if ($validator->fails()) {
-            return response()->json(['message' => $validator->errors()->first()], 422);
+            return response()->json([
+                'success' => false,
+                'message' => $validator->errors()->first()
+            ], 422);
         }
 
-        $image = $request->file('image');
-        $imagePath = $image->store('sliders', 'public');
-
-        return response()->json([
-            'success' => true,
-            'image_path' => $imagePath,
-            'image_url' => asset('storage/' . $imagePath)
-        ]);
+        try {
+            $image = $request->file('image');
+            
+            $result = $this->processSliderImage($image);
+            
+            if (!$result['success']) {
+                return response()->json([
+                    'success' => false,
+                    'message' => $result['message']
+                ], 500);
+            }
+            
+            $imageData = $result['data'];
+            
+            return response()->json([
+                'success' => true,
+                'image_path' => $imageData['original']['path'],
+                'image_url' => $imageData['original']['url'],
+                'webp_url' => $imageData['original']['url'],
+                'fallback_url' => $imageData['fallback']['url'],
+                'responsive' => $imageData['responsive'] ?? [],
+                'optimization_info' => [
+                    'original_size' => $imageData['original']['size'],
+                    'fallback_size' => $imageData['fallback']['size'],
+                    'savings' => $imageData['fallback']['size'] - $imageData['original']['size']
+                ]
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Erro ao fazer upload da imagem: ' . $e->getMessage()
+            ], 500);
+        }
+    }
+    
+    /**
+     * Processa e otimiza imagem do slider
+     *
+     * @param UploadedFile $image
+     * @return array
+     */
+    private function processSliderImage($image)
+    {
+        // Definir tamanhos responsivos para sliders
+        $responsiveSizes = [
+            ['width' => 1200, 'height' => 600, 'suffix' => 'large'],
+            ['width' => 800, 'height' => 400, 'suffix' => 'medium'],
+            ['width' => 400, 'height' => 200, 'suffix' => 'small']
+        ];
+        
+        return $this->imageOptimizationService->convertToWebP(
+            $image, 
+            'sliders', 
+            'slider',
+            $responsiveSizes
+        );
     }
 }

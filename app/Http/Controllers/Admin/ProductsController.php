@@ -11,6 +11,7 @@ use App\Models\Category;
 use App\Models\Product;
 use Carbon\Carbon;
 use App\Services\ProductService;
+use App\Services\ImageOptimizationService;
 
 class ProductsController extends Controller
 {
@@ -18,10 +19,12 @@ class ProductsController extends Controller
     public $folder = 'admin.pages.products';
 
     protected $productService;
+    protected $imageOptimizationService;
 
-    public function __construct(ProductService $productService)
+    public function __construct(ProductService $productService, ImageOptimizationService $imageOptimizationService)
     {
         $this->productService = $productService;
+        $this->imageOptimizationService = $imageOptimizationService;
     }
 
     public function index()
@@ -174,25 +177,55 @@ class ProductsController extends Controller
     public function uploadImage(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:5120', // Aumentado para 5MB e adicionado WebP
         ]);
 
         if ($validator->fails()) {
             return response()->json([
                 'success' => false,
-                'message' => 'Arquivo inválido. Apenas imagens JPG, PNG e GIF são permitidas.'
+                'message' => 'Arquivo inválido. Apenas imagens JPG, PNG, GIF e WebP são permitidas (máx. 5MB).'
             ], 422);
         }
 
         try {
             $image = $request->file('image');
-            $filename = 'product_' . time() . '.' . $image->getClientOriginalExtension();
-            $path = $image->storeAs('products', $filename, 'public');
-
+            
+            // Definir tamanhos responsivos para produtos
+            $responsiveSizes = [
+                ['width' => 400, 'height' => 340, 'suffix' => 'medium'],
+                ['width' => 200, 'height' => 170, 'suffix' => 'small'],
+                ['width' => 141, 'height' => 141, 'suffix' => 'thumb']
+            ];
+            
+            // Converter para WebP com versões responsivas
+            $result = $this->imageOptimizationService->convertToWebP(
+                $image, 
+                'products', 
+                'product',
+                $responsiveSizes
+            );
+            
+            if (!$result['success']) {
+                return response()->json([
+                    'success' => false,
+                    'message' => $result['message']
+                ], 500);
+            }
+            
+            $imageData = $result['data'];
+            
             return response()->json([
                 'success' => true,
-                'image_path' => $path,
-                'image_url' => Storage::url($path)
+                'image_path' => $imageData['original']['path'],
+                'image_url' => $imageData['original']['url'],
+                'webp_url' => $imageData['original']['url'],
+                'fallback_url' => $imageData['fallback']['url'],
+                'responsive' => $imageData['responsive'] ?? [],
+                'optimization_info' => [
+                    'original_size' => $imageData['original']['size'],
+                    'fallback_size' => $imageData['fallback']['size'],
+                    'savings' => $imageData['fallback']['size'] - $imageData['original']['size']
+                ]
             ]);
         } catch (\Exception $e) {
             return response()->json([

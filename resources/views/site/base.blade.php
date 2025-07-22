@@ -16,23 +16,26 @@
     <meta name="msapplication-TileImage" content="{{ asset('tpl_site/img/favicons/ms-icon-144x144.png') }}">
     <meta name="theme-color" content="#ffffff">
 
-    <!-- Google Fonts -->
+    <!-- Google Fonts - Optimized -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100..900;1,100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100..900;1,100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100..900;1,100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet"></noscript>
 
-    <!-- Bootstrap -->
+    <!-- Critical CSS - Keep render-blocking -->
     <link rel="stylesheet" href="{{ asset('tpl_site/css/bootstrap.min.css') }}">
-    <!-- Fontawesome Icon -->
-    <link rel="stylesheet" href="{{ asset('tpl_site/css/fontawesome.min.css') }}">
-    <!-- Magnific Popup -->
-    <link rel="stylesheet" href="{{ asset('tpl_site/css/magnific-popup.min.css') }}">
-    <!-- Swiper Js -->
-    <link rel="stylesheet" href="{{ asset('tpl_site/css/swiper-bundle.min.css') }}">
-    <!-- Theme Custom CSS -->
     <link rel="stylesheet" href="{{ asset('tpl_site/css/style.css') }}">
-
     <link rel="stylesheet" href="{{ asset('tpl_site/css/custom_template.css?1'.rand()) }}">
+    
+    <!-- Non-Critical CSS - Defer loading -->
+    <link rel="preload" href="{{ asset('tpl_site/css/fontawesome.min.css') }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="{{ asset('tpl_site/css/fontawesome.min.css') }}"></noscript>
+    
+    <link rel="preload" href="{{ asset('tpl_site/css/magnific-popup.min.css') }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="{{ asset('tpl_site/css/magnific-popup.min.css') }}"></noscript>
+    
+    <link rel="preload" href="{{ asset('tpl_site/css/swiper-bundle.min.css') }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="{{ asset('tpl_site/css/swiper-bundle.min.css') }}"></noscript>
 
     @yield('pageCSS')
 

@@ -10,6 +10,7 @@ use App\Models\Status;
 use App\Models\Category;
 use Carbon\Carbon;
 use App\Services\CategoryService;
+use App\Services\ImageOptimizationService;
 
 class CategoriesController extends Controller
 {
@@ -17,10 +18,12 @@ class CategoriesController extends Controller
     public $folder = 'admin.pages.categories';
 
     protected $categoryService;
+    protected $imageOptimizationService;
 
-    public function __construct(CategoryService $categoryService)
+    public function __construct(CategoryService $categoryService, ImageOptimizationService $imageOptimizationService)
     {
         $this->categoryService = $categoryService;
+        $this->imageOptimizationService = $imageOptimizationService;
     }
 
     public function index()
@@ -151,25 +154,55 @@ class CategoriesController extends Controller
     public function uploadImage(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:5120',
         ]);
 
         if ($validator->fails()) {
             return response()->json([
                 'success' => false,
-                'message' => 'Arquivo inválido. Apenas imagens JPG, PNG e GIF são permitidas.'
+                'message' => 'Arquivo inválido. Apenas imagens JPG, PNG, GIF e WebP são permitidas (máx. 5MB).'
             ], 422);
         }
 
         try {
             $image = $request->file('image');
-            $filename = 'category_' . time() . '.' . $image->getClientOriginalExtension();
-            $path = $image->storeAs('categories', $filename, 'public');
-
+            
+            // Definir tamanhos responsivos para categorias
+            $responsiveSizes = [
+                ['width' => 300, 'height' => 200, 'suffix' => 'medium'],
+                ['width' => 150, 'height' => 100, 'suffix' => 'small'],
+                ['width' => 75, 'height' => 50, 'suffix' => 'thumb']
+            ];
+            
+            // Converter para WebP com versões responsivas
+            $result = $this->imageOptimizationService->convertToWebP(
+                $image, 
+                'categories', 
+                'category',
+                $responsiveSizes
+            );
+            
+            if (!$result['success']) {
+                return response()->json([
+                    'success' => false,
+                    'message' => $result['message']
+                ], 500);
+            }
+            
+            $imageData = $result['data'];
+            
             return response()->json([
                 'success' => true,
-                'image_path' => $path,
-                'image_url' => Storage::url($path)
+                'image_path' => $imageData['original']['path'],
+                'image_url' => $imageData['original']['url'],
+                'webp_url' => $imageData['original']['url'],
+                'fallback_url' => $imageData['fallback']['url'],
+                'responsive' => $imageData['responsive'] ?? [],
+                'optimization_info' => [
+                    'original_size' => $imageData['original']['size'],
+                    'fallback_size' => $imageData['fallback']['size'],
+                    'savings' => $imageData['fallback']['size'] - $imageData['original']['size']
+                ]
             ]);
         } catch (\Exception $e) {
             return response()->json([

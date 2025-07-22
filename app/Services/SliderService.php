@@ -3,9 +3,17 @@
 namespace App\Services;
 
 use App\Models\Slider;
+use App\Services\ImageOptimizationService;
+use Illuminate\Http\UploadedFile;
 
 class SliderService
 {
+    protected $imageOptimizationService;
+
+    public function __construct(ImageOptimizationService $imageOptimizationService)
+    {
+        $this->imageOptimizationService = $imageOptimizationService;
+    }
 	public function getAllSliders($filters = [], $paginate = false, $perPage = 10)
 	{
 		$query = Slider::query();
@@ -43,12 +51,40 @@ class SliderService
 
 	public function createSlider($data)
 	{
+        // Processar imagem se fornecida
+        if (isset($data['image']) && $data['image'] instanceof UploadedFile) {
+            $imageResult = $this->processSliderImage($data['image']);
+            if ($imageResult['success']) {
+                $data['image'] = $imageResult['data']['original']['path'];
+                $data['image_webp'] = $imageResult['data']['original']['path'];
+                $data['image_fallback'] = $imageResult['data']['fallback']['path'];
+                $data['image_responsive'] = json_encode($imageResult['data']['responsive'] ?? []);
+            }
+        }
+        
 		return Slider::create($data);
 	}
 
 	public function updateSlider($id, $data)
 	{
 		$model = Slider::findOrFail($id);
+        
+        // Processar imagem se fornecida
+        if (isset($data['image']) && $data['image'] instanceof UploadedFile) {
+            // Remover imagem antiga se existir
+            if ($model->image) {
+                $this->imageOptimizationService->deleteImage($model->image);
+            }
+            
+            $imageResult = $this->processSliderImage($data['image']);
+            if ($imageResult['success']) {
+                $data['image'] = $imageResult['data']['original']['path'];
+                $data['image_webp'] = $imageResult['data']['original']['path'];
+                $data['image_fallback'] = $imageResult['data']['fallback']['path'];
+                $data['image_responsive'] = json_encode($imageResult['data']['responsive'] ?? []);
+            }
+        }
+        
 		$model->update($data);
 		return $model;
 	}
@@ -58,5 +94,28 @@ class SliderService
 		$model = Slider::findOrFail($id);
 		return $model->delete();
 	}
+    
+    /**
+     * Processa e otimiza imagem do slider
+     *
+     * @param UploadedFile $image
+     * @return array
+     */
+    private function processSliderImage(UploadedFile $image)
+    {
+        // Definir tamanhos responsivos para sliders
+        $responsiveSizes = [
+            ['width' => 1200, 'height' => 600, 'suffix' => 'large'],
+            ['width' => 800, 'height' => 400, 'suffix' => 'medium'],
+            ['width' => 400, 'height' => 200, 'suffix' => 'small']
+        ];
+        
+        return $this->imageOptimizationService->convertToWebP(
+            $image, 
+            'sliders', 
+            'slider',
+            $responsiveSizes
+        );
+    }
 
 }
