@@ -6,7 +6,7 @@
 <div class="th-hero-wrapper hero-3 hero-4 slider-area" id="hero">
     <div class="swiper th-slider" id="heroSlide4" data-slider-options='{"effect":"fade","autoHeight":true}'>
         <div class="swiper-wrapper">
-            @forelse($sliders as $slider)
+            @foreach($sliders as $slider)
             <div class="swiper-slide" data-bg-src="{{ asset('storage/' . $slider->image) }}">
                 <div class="hero-inner">
                     <div class="container">
@@ -31,26 +31,7 @@
                     </div>
                 </div>
             </div>
-            @empty
-            {{-- Fallback content if no sliders are available --}}
-            <div class="swiper-slide" data-bg-src="{{ asset('/storage/sliders/slider_1.png') }}">
-                <div class="hero-inner">
-                    <div class="container">
-                        <div class="hero-style4">
-                            <div class="hero-star-rating" data-ani="slideinup" data-ani-delay="0.4s">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                            <h1 class="hero-title" data-ani="slideinup" data-ani-delay="0.6s">Bem-vindo à Laminatta: Sua Experiência em Lâminas de Alta Qualidade </h1>
-                            <p class="hero-text" data-ani="slideinup" data-ani-delay="0.7s">A Laminatta oferece o que há de melhor em lâminas naturais e compostas, proporcionando projetos únicos e duradouros com nossa expertise em prensagem.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            @endforelse
+            @endforeach
         </div>
 
         <button class="slider-arrow slider-prev slider-prev-bg"
@@ -93,7 +74,7 @@
                                         <div class="swiper-slide">
                                             <div class="about-room-card">
                                                 <div class="box-img global-img">
-                                                    <img src="{{ asset('/storage/abouts/image_402-393.png') }}" alt="imagem de lâmina">
+                                                    <img src="{{ asset('/storage/abouts/image_402-393.webp') }}" alt="imagem de lâmina">
                                                 </div>
                                                 <div class="box-content">
                                                     <div class="box-icon"><img
@@ -108,7 +89,7 @@
                                         <div class="swiper-slide">
                                             <div class="about-room-card">
                                                 <div class="box-img global-img">
-                                                    <img src="{{ asset('storage/abouts/image_402-393.png') }}" alt="imagem de serviço">
+                                                    <img src="{{ asset('storage/abouts/image_402-393.webp') }}" alt="imagem de serviço">
                                                 </div>
                                                 <div class="box-content">
                                                     <div class="box-icon"><img
@@ -123,7 +104,7 @@
                                         <div class="swiper-slide">
                                             <div class="about-room-card">
                                                 <div class="box-img global-img">
-                                                    <img src="{{ asset('storage/abouts/image_402-393.png') }}" alt="imagem de segurança">
+                                                    <img src="{{ asset('storage/abouts/image_402-393.webp') }}" alt="imagem de segurança">
                                                 </div>
                                                 <div class="box-content">
                                                     <div class="box-icon"><img
@@ -142,7 +123,7 @@
                         </div>
                         <div class="img-box7-2">
                             <div class="img1">
-                                <img src="{{ asset('storage/abouts/image_544-777.png') }}" alt="imagem de design">
+                                <img src="{{ asset('storage/abouts/image_544-777.webp') }}" alt="imagem de design">
                             </div>
                         </div>
                     </div>
@@ -190,7 +171,7 @@
             <div class="col-12 service-card-wrap">
                 <div class="service-card style3">
                     <div class="box-img">
-                        <img src="{{ asset('/storage/services/image_970-450.png') }}" alt="Serviço de Prensagem">
+                        <img src="{{ asset('/storage/services/image_970-450.webp') }}" alt="Serviço de Prensagem">
                     </div>
                     <div class="box-content">
                         <h6 class="box-subtitle">Alta Precisão e Produtividade</h6>

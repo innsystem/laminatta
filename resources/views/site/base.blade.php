@@ -94,22 +94,22 @@
             <div class="sidemenu-layout">
                 <div class="th-side-menu">
                     <div class="side-logo">
-                        <a href="{{ route('site.index') }}"><img src="{{ asset('/galerias/logo_laminatta_white.png') }}" alt="Laminatta" style="max-width:160px;"></a>
+                        <a href="{{ route('site.index') }}"><img src="{{ asset('/galerias/logo_laminatta_white.webp') }}" alt="Laminatta" style="max-width:160px;"></a>
                     </div>
                     <ul>
                         <li class="">
                             <a href="{{ route('site.index') }}">Início</a>
                         </li>
-                        <li class="menu-item-has-children">
+                        <li>
                             <a href="{{ route('site.about') }}">Sobre Nós</a>
                         </li>
-                        <li class="menu-item-has-children">
+                        <li>
                             <a href="{{ route('site.categories.index') }}">Lâminas</a>
                         </li>
-                        <li class="menu-item-has-children">
+                        <li>
                             <a href="{{ route('site.services') }}">Serviços</a>
                         </li>
-                        <li class="menu-item-has-children">
+                        <li>
                             <a href="{{ route('site.sustainability') }}">Sustentabilidade</a>
                         </li>
                     </ul>
@@ -118,33 +118,35 @@
                 <div class="widget side-menu-contact pt-80 footer-widget">
                     <h3 class="widget_title">Entre em Contato</h3>
                     <div class="th-widget-contact">
+                        @if(isset($getSettings['address']) && $getSettings['address'] != '')
                         <div class="info-box">
                             <div class="box-icon">
                                 <i class="fal fa-location-dot"></i>
                             </div>
-                            <p class="box-text">Av. Principal, 123, Cidade, Estado, País</p>
+                            <p class="box-text">{{$getSettings['address']}}</p>
                         </div>
+                        @endif
+                        @if(isset($getSettings['phone']) && $getSettings['phone'] != '')
                         <div class="info-box">
                             <div class="box-icon">
                                 <i class="fal fa-phone"></i>
                             </div>
                             <p class="box-text">
-                                <a href="tel:+01234567890" class="box-link">+01 234 567 890</a>
+                                <a href="tel:{{$getSettings['phone']}}" class="box-link">{{$getSettings['phone']}}</a>
                                 <a href="tel:+09876543210" class="box-link">+09 876 543 210</a>
                             </p>
                         </div>
+                        @endif
+                        @if(isset($getSettings['email']) && $getSettings['email'] != '')
                         <div class="info-box">
                             <div class="box-icon">
                                 <i class="fal fa-envelope"></i>
                             </div>
                             <p class="box-text">
-                                <a href="mailto:mailinfo00@laminatta.com" class="box-link">contato@laminatta.com</a>
-                                <a href="mailto:support24@laminatta.com" class="box-link">suporte24@laminatta.com</a>
+                                <a href="mailto:{{$getSettings['email']}}" class="box-link">{{$getSettings['email']}}</a>
                             </p>
                         </div>
-                    </div>
-                    <div class="mt-50">
-                        <a href="contact.html" class="th-btn th-icon">SOLICITAR ORÇAMENTO</a>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -203,7 +205,7 @@
                         <div class="col-auto">
                             <div class="header-logo">
                                 <a href="{{ route('site.index') }}">
-                                    <img src="{{ asset('/galerias/logo_laminatta_white.png') }}" alt="Laminatta">
+                                    <img src="{{ asset('/galerias/logo_laminatta_white.webp') }}" alt="Laminatta">
                                 </a>
                                 <div class="bg-shape" data-mask-src="{{ asset('tpl_site/img/logo-shape2.png') }}"></div>
                             </div>
@@ -234,7 +236,7 @@
     <footer class="footer-wrapper footer-layout1 footer-layout1-2 bg-light2">
         <div class="container">
             <div class="footer-logo">
-                <img class="bg-light2" src="{{ asset('/galerias/logo_laminatta_white.png') }}" alt="Laminatta">
+                <img class="bg-light2" src="{{ asset('/galerias/logo_laminatta_white.webp') }}" alt="Laminatta">
             </div>
         </div>
         <div class="widget-area">
