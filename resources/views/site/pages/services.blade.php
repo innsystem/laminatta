@@ -15,7 +15,7 @@
             </div>
             <div class="col-lg-5">
                 <div class="about-content">
-                    <p class="about-description">Com mais de 15 anos de experiência com lâminas naturais e compostas, nossa empresa oferece um serviço de prensagem térmica altamente técnico e confiável, desenvolvido para atender as exigências da marcenaria profissional.</p>
+                    <p class="about-description">Com mais de 30 anos de experiência com lâminas naturais e compostas, nossa empresa oferece um serviço de prensagem térmica altamente técnico e confiável, desenvolvido para atender as exigências da marcenaria profissional.</p>
                     <p class="about-description">Contamos com três prensas térmicas industriais, garantindo agilidade no fluxo de produção e prazos reduzidos, mesmo em volumes maiores. Entre os equipamentos, destacamos a SCM Sergiani GS 3000 x 1300, referência em performance, que assegura distribuição uniforme de temperatura e pressão em toda a área útil, essencial para prensagens sem falhas ou bolhas.</p>
                 </div>
             </div>

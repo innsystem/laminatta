@@ -58,8 +58,9 @@ class SiteController extends Controller
     public function categoriesIndex()
     {
         $categories = Category::active()->ordered()->get();
+        $products = Product::active()->get();
 
-        return view('site.pages.categories', compact('categories'));
+        return view('site.pages.categories', compact('categories', 'products'));
     }
 
     public function productsByCategory($slug)

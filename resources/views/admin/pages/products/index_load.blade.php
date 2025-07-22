@@ -13,8 +13,8 @@
                 <h5 class="h5 mb-1 fw-bold">{{$product->title}}</h5>
                 <p class="text-muted mb-0">
                     <strong>Categoria:</strong> {{ $product->category->title ?? 'N/A' }} | 
-                    <strong>Preço:</strong> {{ $product->formatted_price }} | 
-                    <strong>Estoque:</strong> {{ $product->stock }}
+                    <!-- <strong>Preço:</strong> {{ $product->formatted_price }} |  -->
+                    <!-- <strong>Estoque:</strong> {{ $product->stock }} -->
                 </p>
                 @if($product->description)
                 <p class="text-muted mb-0 mt-1">

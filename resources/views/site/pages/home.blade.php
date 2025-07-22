@@ -58,8 +58,7 @@
                         <div class="title-area mb-45">
                             <span class="sub-title2 style1">SOBRE NÓS</span>
                             <h2 class="sec-title">Bem-vindo à Laminatta: A Excelência em Lâminas e Prensagem</h2>
-                            <p class="sec-text mt-35 mb-20">Na Laminatta, dedicamo-nos a oferecer as melhores lâminas naturais e compostas, com um serviço de prensagem de alta precisão. Seu feedback é essencial para nós, e graças à satisfação de nossos clientes, a empresa cresce e se moderniza a cada ano.</p>
-                            <p class="sec-text">Se nossos produtos ou serviços não atenderem às suas expectativas, por favor, entre em contato. Faremos o possível para resolver suas necessidades. Nossa equipe está sempre à disposição, com mais de 15 anos de experiência e um forte senso de hospitalidade e dedicação ao seu projeto.</p>
+                            <p class="sec-text">A Laminatta é uma empresa especializada na comercialização da mais alta qualidade de lâminas de madeira natural. Nossas lâminas são cuidadosamente selecionadas para garantir não apenas beleza, mas também durabilidade e praticidade.    Com um forte compromisso em facilitar o dia a dia de nossos clientes e parceiros estamos sempre prontos para orientar e auxiliá-los na escolha dos produtos mais adequados.  Acreditamos que, ao oferecer o melhor em lâminas, contribuímos para a realização de projetos únicos e inspiradores.</p>
                         </div>
                     </div>
                     <div class="slider-wrap">
