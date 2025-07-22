@@ -84,8 +84,8 @@ class ProductsController extends Controller
             'slug' => 'required|unique:products,slug',
             'description' => 'nullable',
             'image' => 'nullable|string',
-            'price' => 'required|numeric|min:0',
-            'stock' => 'required|integer|min:0',
+            // 'price' => 'required|numeric|min:0',
+            // 'stock' => 'required|integer|min:0',
             'status' => 'required|exists:statuses,id',
         );
         $messages = array(
