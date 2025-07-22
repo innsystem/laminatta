@@ -11,7 +11,7 @@
         </div>
     </div>
 
-    <div class="d-flex flex-column flex-md-row align-items-center justify-content-start gap-4 my-5 py-5">
+    <div class="row my-5 py-5">
         <div class="col-12 col-md-5">
             <img src="{{ asset('/storage/abouts/categories.png') }}" alt="" class="img-fluid rounded" style="height: 400px;object-fit: cover;border-radius: 10px;box-shadow: 0 0 20px rgba(0,0,0,0.2);">
         </div>
