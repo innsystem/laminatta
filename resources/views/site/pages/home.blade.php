@@ -163,7 +163,7 @@
             <div class="col-12 service-card-wrap">
                 <div class="service-card style3">
                     <div class="box-img">
-                        <img src="{{ asset('/storage/services/image_970-450.webp') }}" alt="Serviço de Prensagem">
+                        <img src="{{ asset('/storage/services/image_970-450.webp?1') }}" alt="Serviço de Prensagem">
                     </div>
                     <div class="box-content">
                         <h6 class="box-subtitle">Alta Precisão e Produtividade</h6>

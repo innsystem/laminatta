@@ -21,7 +21,7 @@
             </div>
             <div class="col-lg-5">
                 <div class="about-image-wrapper">
-                    <img src="{{ asset('/storage/services/image_970-450.png') }}" alt="Prensagem Térmica Profissional" class="img-fluid about-image">
+                    <img src="{{ asset('/storage/services/image_970-450.webp?1') }}" alt="Prensagem Térmica Profissional" class="img-fluid about-image">
                 </div>
             </div>
         </div>
