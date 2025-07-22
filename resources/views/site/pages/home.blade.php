@@ -61,9 +61,6 @@
                             <p class="sec-text mt-35 mb-20">Na Laminatta, dedicamo-nos a oferecer as melhores lâminas naturais e compostas, com um serviço de prensagem de alta precisão. Seu feedback é essencial para nós, e graças à satisfação de nossos clientes, a empresa cresce e se moderniza a cada ano.</p>
                             <p class="sec-text">Se nossos produtos ou serviços não atenderem às suas expectativas, por favor, entre em contato. Faremos o possível para resolver suas necessidades. Nossa equipe está sempre à disposição, com mais de 15 anos de experiência e um forte senso de hospitalidade e dedicação ao seu projeto.</p>
                         </div>
-                        <div class="btn-group mt-1">
-                            <a href="about.html" class="th-btn2 th-icon">SAIBA MAIS</a>
-                        </div>
                     </div>
                     <div class="slider-wrap">
                         <div class="swiper th-slider about-room-slider" id="aboutroomSlider1"
