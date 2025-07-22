@@ -1501,14 +1501,41 @@
     display: none !important;
 }
 
+.hero-style4 .hero-title {
+    font-size: 36px !important;
+}
 .hero-style4 .hero-text {
     font-size: 22px !important;
 }
 
+.swiper-autoheight, .swiper-autoheight .swiper-slide {
+    height: 60vh !important;
+}
+
 .hero-style4 {
-    padding: 474px 0 210px;
+    padding: 174px 0 210px !important;
 }
 
 .img-box7-2 .img1 {
     height: auto !important;
+}
+
+@media screen and (max-width:991px) {
+
+    .swiper-autoheight,
+    .swiper-autoheight .swiper-slide {
+        height: 50vh !important;
+    }
+
+    .hero-style4 {
+        padding: 74px 0 210px !important;
+    }
+
+    .hero-style4 .hero-title {
+        font-size: 26px !important;
+    }
+
+    .hero-style4 .hero-text {
+        font-size: 16px !important;
+    }
 }

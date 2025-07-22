@@ -90,7 +90,7 @@
                                                     src="{{ asset('tpl_site/img/icon/feature_card_2.svg') }}" alt="ícone de serviço">
                                             </div>
                                             <h3 class="box-title"><a href="room.html">Prensagem Térmica de Alta Precisão</a></h3>
-                                            <p class="box-text">Nosso serviço de prensagem térmica garante acabamentos perfeitos e a máxima adesão, ideal para marcenaria profissional e projetos sob medida.</p>
+                                            <p class="box-text">Nosso serviço de prensagem térmica garante acabamentos perfeitos e máxima adesão, ideal para marcenaria profissional e projetos sob medida.</p>
                                         </div>
                                     </div>
                                 </div>
@@ -131,7 +131,7 @@
             <div class="col-12 text-center">
                 <div class="title-area">
                     <span class="sub-title2">LÂMINAS</span>
-                    <h2 class="sec-title text-white">Naturais & Compostas</h2>
+                    <h2 class="sec-title text-white">Naturais</h2>
                 </div>
             </div>
         </div>

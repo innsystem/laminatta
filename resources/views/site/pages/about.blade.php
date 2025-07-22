@@ -26,7 +26,7 @@
             </div>
             <div class="col-lg-4">
                 <div class="about-image-wrapper">
-                    <img src="{{ asset('/storage/abouts/image_404-633.png') }}" alt="Laminatta Marcenaria" class="about-image">
+                    <img src="{{ asset('/storage/abouts/image_404-633.webp?1') }}" alt="Laminatta Marcenaria" class="about-image">
                 </div>
             </div>
         </div>
