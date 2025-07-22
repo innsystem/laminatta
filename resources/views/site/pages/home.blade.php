@@ -68,7 +68,7 @@
                                 <div class="swiper-slide">
                                     <div class="about-room-card">
                                         <div class="box-img global-img">
-                                            <img src="{{ asset('/storage/abouts/image_402-393.webp') }}" alt="imagem de lâmina">
+                                            <img src="{{ asset('/storage/abouts/slide_portfolio.webp') }}" alt="imagem de lâmina">
                                         </div>
                                         <div class="box-content">
                                             <div class="box-icon"><img
@@ -83,7 +83,7 @@
                                 <div class="swiper-slide">
                                     <div class="about-room-card">
                                         <div class="box-img global-img">
-                                            <img src="{{ asset('storage/abouts/image_402-393.webp') }}" alt="imagem de serviço">
+                                            <img src="{{ asset('/storage/abouts/slide_prensa.webp') }}" alt="imagem de serviço">
                                         </div>
                                         <div class="box-content">
                                             <div class="box-icon"><img
@@ -98,7 +98,7 @@
                                 <div class="swiper-slide">
                                     <div class="about-room-card">
                                         <div class="box-img global-img">
-                                            <img src="{{ asset('storage/abouts/image_402-393.webp') }}" alt="imagem de segurança">
+                                            <img src="{{ asset('/storage/abouts/slide_compromisso.webp') }}" alt="imagem de segurança">
                                         </div>
                                         <div class="box-content">
                                             <div class="box-icon"><img
