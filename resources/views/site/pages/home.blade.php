@@ -7,10 +7,10 @@
     <div class="swiper th-slider" id="heroSlide4" data-slider-options='{"effect":"fade","autoHeight":true}'>
         <div class="swiper-wrapper">
             @foreach($sliders as $slider)
-            <div class="swiper-slide" 
-                 data-bg-src="@webpUrl($slider->image, 'xl')" 
-                 data-bg-srcset="@webpUrl($slider->image, 'mobile') 768w, @webpUrl($slider->image, 'large') 1600w, @webpUrl($slider->image, 'xl') 1920w"
-                 data-bg-sizes="(max-width: 768px) 768px, (max-width: 1600px) 1600px, 1920px">
+            <div class="swiper-slide"
+                data-bg-src="@webpUrl($slider->image, 'xl')"
+                data-bg-srcset="@webpUrl($slider->image, 'mobile') 768w, @webpUrl($slider->image, 'large') 1600w, @webpUrl($slider->image, 'xl') 1920w"
+                data-bg-sizes="(max-width: 768px) 768px, (max-width: 1600px) 1600px, 1920px">
                 <div class="hero-inner">
                     <div class="container">
                         <div class="hero-style4">
@@ -59,69 +59,79 @@
                 <div class="about-wrap4-content">
                     <div class="about-content-wrap">
                         <div class="title-area mb-45">
+                            <h2 class="sec-title">Bem-Vindo à Laminatta: <br> - Lâminas importadas <br> - Selecionadas pessoalmente <br> - Excelência em Prensagem.</h2>
                             <span class="sub-title2 style1">SOBRE NÓS</span>
-                            <h2 class="sec-title">Bem-vindo à Laminatta: A Excelência em Lâminas e Prensagem</h2>
-                            <p class="sec-text">A Laminatta é uma empresa especializada na comercialização da mais alta qualidade de lâminas de madeira natural. Nossas lâminas são cuidadosamente selecionadas para garantir não apenas beleza, mas também durabilidade e praticidade.    Com um forte compromisso em facilitar o dia a dia de nossos clientes e parceiros estamos sempre prontos para orientar e auxiliá-los na escolha dos produtos mais adequados.  Acreditamos que, ao oferecer o melhor em lâminas, contribuímos para a realização de projetos únicos e inspiradores.</p>
-                        </div>
-                    </div>
-                    <div class="slider-wrap">
-                        <div class="swiper th-slider about-room-slider" id="aboutroomSlider1"
-                            data-slider-options='{"slidesPerView":"1", "effect": "fade", "aautoHeight": "true"}'>
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <div class="about-room-card">
-                                        <div class="box-img global-img">
-                                            <img src="{{ asset('/storage/abouts/slide_portfolio.webp') }}" alt="imagem de lâmina">
-                                        </div>
-                                        <div class="box-content">
-                                            <div class="box-icon"><img
-                                                    src="{{ asset('tpl_site/img/icon/feature_card_3.svg') }}" alt="ícone de característica">
-                                            </div>
-                                            <h3 class="box-title"><a href="room.html">Portfólio Completo de Lâminas</a></h3>
-                                            <p class="box-text">Descubra nossa vasta gama de lâminas naturais e compostas, cuidadosamente selecionadas para a máxima beleza e durabilidade em seus projetos.</p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="swiper-slide">
-                                    <div class="about-room-card">
-                                        <div class="box-img global-img">
-                                            <img src="{{ asset('/storage/abouts/slide_prensa.webp') }}" alt="imagem de serviço">
-                                        </div>
-                                        <div class="box-content">
-                                            <div class="box-icon"><img
-                                                    src="{{ asset('tpl_site/img/icon/feature_card_2.svg') }}" alt="ícone de serviço">
-                                            </div>
-                                            <h3 class="box-title"><a href="room.html">Prensagem Térmica de Alta Precisão</a></h3>
-                                            <p class="box-text">Nosso serviço de prensagem térmica garante acabamentos perfeitos e máxima adesão, ideal para marcenaria profissional e projetos sob medida.</p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="swiper-slide">
-                                    <div class="about-room-card">
-                                        <div class="box-img global-img">
-                                            <img src="{{ asset('/storage/abouts/slide_compromisso.webp') }}" alt="imagem de segurança">
-                                        </div>
-                                        <div class="box-content">
-                                            <div class="box-icon"><img
-                                                    src="{{ asset('tpl_site/img/icon/feature_card_1.svg') }}" alt="ícone de qualidade">
-                                            </div>
-                                            <h3 class="box-title"><a href="room.html">Compromisso com a Qualidade</a></h3>
-                                            <p class="box-text">Na Laminatta, cada detalhe é importante. Garantimos a qualidade superior de nossas lâminas e a excelência em todos os nossos processos.</p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="slider-pagination style2" data-slider-id="#aboutroomSlider1"></div>
+                            <p class="sec-text">A Laminatta é uma empresa especializada na comercialização da mais alta qualidade de lâminas de madeira natural. Nossas lâminas são cuidadosamente selecionadas para garantir não apenas beleza, mas também durabilidade e praticidade. Com um forte compromisso em facilitar o dia a dia de nossos clientes e parceiros estamos sempre prontos para orientar e auxiliá-los na escolha dos produtos mais adequados. Acreditamos que, ao oferecer o melhor em lâminas, contribuímos para a realização de projetos únicos e inspiradores.</p>
                         </div>
                     </div>
                 </div>
                 <div class="img-box7-2">
                     <div class="img1">
-                        <img src="{{ asset('storage/abouts/image_544-777.webp') }}" alt="imagem de design">
+                        <img src="{{ asset('storage/abouts/image_544-777.webp?1') }}" alt="imagem de design">
                     </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row align-items-center">
+            <div class="col-12 col-md-8">
+                <div class="slider-wrap">
+                    <div class="swiper th-slider about-room-slider" id="aboutroomSlider1"
+                        data-slider-options='{"slidesPerView":"1", "effect": "fade", "aautoHeight": "true"}'>
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <div class="about-room-card">
+                                    <div class="box-img global-img">
+                                        <img src="{{ asset('/storage/abouts/slide_portfolio.webp') }}" alt="imagem de lâmina">
+                                    </div>
+                                    <div class="box-content">
+                                        <div class="box-icon"><img
+                                                src="{{ asset('tpl_site/img/icon/feature_card_3.svg') }}" alt="ícone de característica">
+                                        </div>
+                                        <h3 class="box-title"><a href="room.html">Portfólio Completo de Lâminas</a></h3>
+                                        <p class="box-text">Descubra nossa vasta gama de lâminas naturais e compostas, cuidadosamente selecionadas para a máxima beleza e durabilidade em seus projetos.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="swiper-slide">
+                                <div class="about-room-card">
+                                    <div class="box-img global-img">
+                                        <img src="{{ asset('/storage/abouts/slide_prensa.webp?1') }}" alt="imagem de serviço">
+                                    </div>
+                                    <div class="box-content">
+                                        <div class="box-icon"><img
+                                                src="{{ asset('tpl_site/img/icon/feature_card_2.svg') }}" alt="ícone de serviço">
+                                        </div>
+                                        <h3 class="box-title"><a href="room.html">Prensagem Térmica de Alta Precisão</a></h3>
+                                        <p class="box-text">Nosso serviço de prensagem térmica garante acabamentos perfeitos e máxima adesão, ideal para marcenaria profissional e projetos sob medida.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="swiper-slide">
+                                <div class="about-room-card">
+                                    <div class="box-img global-img">
+                                        <img src="{{ asset('/storage/abouts/slide_compromisso.webp?1') }}" alt="imagem de segurança">
+                                    </div>
+                                    <div class="box-content">
+                                        <div class="box-icon"><img
+                                                src="{{ asset('tpl_site/img/icon/feature_card_1.svg') }}" alt="ícone de qualidade">
+                                        </div>
+                                        <h3 class="box-title"><a href="room.html">Compromisso com a Qualidade</a></h3>
+                                        <p class="box-text">Na Laminatta, cada detalhe é importante. Garantimos a qualidade superior de nossas lâminas e a excelência em todos os nossos processos.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="slider-pagination style2" data-slider-id="#aboutroomSlider1"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-4">
+                <div class="text-center">
+                    <a href="https://wa.me/@formatPhone($getSettings['cellphone'])" class="th-btn2 th-icon" target="_blank">ENTRE EM CONTATO</a>
                 </div>
             </div>
         </div>

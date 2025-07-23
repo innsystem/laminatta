@@ -1504,11 +1504,13 @@
 .hero-style4 .hero-title {
     font-size: 36px !important;
 }
+
 .hero-style4 .hero-text {
     font-size: 22px !important;
 }
 
-.swiper-autoheight, .swiper-autoheight .swiper-slide {
+.swiper-autoheight,
+.swiper-autoheight .swiper-slide {
     height: 60vh !important;
 }
 
@@ -1517,7 +1519,7 @@
 }
 
 .img-box7-2 .img1 {
-    height: auto !important;
+    height: 70vh !important;
 }
 
 @media screen and (max-width:991px) {
@@ -1537,5 +1539,22 @@
 
     .hero-style4 .hero-text {
         font-size: 16px !important;
+    }
+}
+
+.title-area .sec-title {
+    margin-bottom: 20px;
+    letter-spacing: 0.02em;
+    font-size: 36px;
+}
+
+.about-wrap4 .about-content-wrap {
+    padding: 0 0 10px 57px;
+}
+
+@media (max-width: 991px) {
+    .img-box7-2 {
+        margin-top: 10px;
+        margin-bottom:60px;
     }
 }
