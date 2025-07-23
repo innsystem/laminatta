@@ -1571,6 +1571,19 @@
     }
 }
 
+@media (max-width: 460px) {
+    .title-area .sec-title {
+        margin-bottom: 20px;
+        letter-spacing: 0.02em;
+        font-size: 22px;
+    }
+
+    .sec-text {
+        font-size: 14px;
+        line-height: 29px;
+    }
+}
+
 .about-wrap4-right {
     display: flex;
     justify-content: space-between;
