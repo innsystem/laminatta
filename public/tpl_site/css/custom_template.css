@@ -1550,10 +1550,21 @@
 }
 
 .about-wrap4 .about-content-wrap {
-    padding: 0 0 10px 57px;
+    padding: 0 0 10px 0px;
 }
 
 @media (max-width: 991px) {
+    .title-area .sec-title {
+        margin-bottom: 20px;
+        letter-spacing: 0.02em;
+        font-size: 28px;
+    }
+    
+    .sec-text {
+        font-size: 16px;
+        line-height: 29px;
+    }
+
     .img-box7-2 {
         margin-top: 10px;
         margin-bottom: 60px;

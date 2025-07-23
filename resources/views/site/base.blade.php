@@ -25,7 +25,7 @@
     <!-- Critical CSS - Keep render-blocking -->
     <link rel="stylesheet" href="{{ asset('tpl_site/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('tpl_site/css/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('tpl_site/css/custom_template.css?7') }}">
+    <link rel="stylesheet" href="{{ asset('tpl_site/css/custom_template.css?8') }}">
     
     <!-- Non-Critical CSS - Defer loading -->
     <link rel="preload" href="{{ asset('tpl_site/css/fontawesome.min.css') }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
