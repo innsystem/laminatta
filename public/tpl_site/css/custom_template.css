@@ -1555,6 +1555,31 @@
 @media (max-width: 991px) {
     .img-box7-2 {
         margin-top: 10px;
-        margin-bottom:60px;
+        margin-bottom: 60px;
     }
+}
+
+.about-wrap4-right {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+@media screen and (max-width:1400px) {
+    .about-wrap4-right {
+        flex-direction: column;
+    }
+}
+
+.about-wrap4-right .about-wrap4-content {
+    max-width: 80vh;
+}
+
+.about-wrap4 .about-content-wrap .title-area {
+    max-width: 100% !important;
+}
+
+.sec-text {
+    font-size: 22px;
+    line-height: 37px;
 }
