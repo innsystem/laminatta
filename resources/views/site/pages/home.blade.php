@@ -54,27 +54,23 @@
 
 <div class=" overflow-hidden space" id="about-sec">
     <div class="container">
-        <div class="row about-wrap4">
-            <div class="about-wrap4-right">
-                <div class="about-wrap4-content">
-                    <div class="about-content-wrap">
-                        <div class="title-area mb-45">
-                            <h2 class="sec-title">Bem-Vindo à Laminatta: <br> - Lâminas Importadas <br> - Selecionadas Pessoalmente <br> - Excelência em Prensagem</h2>
-                            <span class="sub-title2 style1">SOBRE NÓS</span>
-                            <p class="sec-text">A Laminatta é uma empresa especializada na comercialização da mais alta qualidade de lâminas de madeira natural. Nossas lâminas são cuidadosamente selecionadas para garantir não apenas beleza, mas também durabilidade e praticidade. Com um forte compromisso em facilitar o dia a dia de nossos clientes e parceiros estamos sempre prontos para orientar e auxiliá-los na escolha dos produtos mais adequados. Acreditamos que, ao oferecer o melhor em lâminas, contribuímos para a realização de projetos únicos e inspiradores.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="img-box7-2">
-                    <div class="img1">
-                        <img src="{{ asset('storage/abouts/image_544-777.webp?2') }}" alt="imagem de design">
+        <div class="row align-items-center">
+            <div class="col-12 col-md-8">
+                <div class="about-content-wrap">
+                    <div class="title-area mb-45">
+                        <h2 class="sec-title">Bem-Vindo à Laminatta: <br> - Lâminas Importadas <br> - Selecionadas Pessoalmente <br> - Excelência em Prensagem</h2>
+                        <span class="sub-title2 style1">SOBRE NÓS</span>
+                        <p class="sec-text">A Laminatta é uma empresa especializada na comercialização da mais alta qualidade de lâminas de madeira natural. Nossas lâminas são cuidadosamente selecionadas para garantir não apenas beleza, mas também durabilidade e praticidade. Com um forte compromisso em facilitar o dia a dia de nossos clientes e parceiros estamos sempre prontos para orientar e auxiliá-los na escolha dos produtos mais adequados. Acreditamos que, ao oferecer o melhor em lâminas, contribuímos para a realização de projetos únicos e inspiradores.</p>
                     </div>
                 </div>
             </div>
+            <div class="col-12 col-md-4">
+                <img src="{{ asset('storage/abouts/image_544-777.webp?2') }}" class="img-fluid rounded" alt="imagem de design">
+            </div>
         </div>
 
-        <div class="row align-items-center">
-            <div class="col-12 col-lg-8">
+        <div class="row align-items-center mt-4 mt-md-0">
+            <div class="col-12 col-xxl-8">
                 <div class="slider-wrap">
                     <div class="swiper th-slider about-room-slider" id="aboutroomSlider1"
                         data-slider-options='{"slidesPerView":"1", "effect": "fade", "aautoHeight": "true"}'>
@@ -129,7 +125,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-lg-4">
+            <div class="col-12 col-xxl-4 mt-4 mt-xxl-0">
                 <div class="text-center">
                     <a href="https://wa.me/@formatPhone($getSettings['cellphone'])" class="th-btn2 th-icon" target="_blank">ENTRE EM CONTATO</a>
                 </div>
