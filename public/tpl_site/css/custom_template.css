@@ -1520,6 +1520,7 @@
 
 .img-box7-2 .img1 {
     height: 70vh !important;
+    max-height: 598px;
 }
 
 @media screen and (max-width:991px) {
@@ -1572,7 +1573,8 @@
 }
 
 .about-wrap4-right .about-wrap4-content {
-    max-width: 80vh;
+    width: 80vh;
+    max-width: 80%;
 }
 
 .about-wrap4 .about-content-wrap .title-area {
