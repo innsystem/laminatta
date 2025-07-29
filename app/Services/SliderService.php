@@ -103,11 +103,12 @@ class SliderService
      */
     private function processSliderImage(UploadedFile $image)
     {
-        // Definir tamanhos responsivos para sliders
+        // Definir tamanhos responsivos para sliders - 1920px (principal), 1600px, 768px
+        // Mantendo proporção 16:9 para hero sliders
         $responsiveSizes = [
-            ['width' => 1200, 'height' => 600, 'suffix' => 'large'],
-            ['width' => 800, 'height' => 400, 'suffix' => 'medium'],
-            ['width' => 400, 'height' => 200, 'suffix' => 'small']
+            ['width' => 1920, 'height' => 1080, 'suffix' => 'xl'],     // Principal - Desktop
+            ['width' => 1600, 'height' => 900, 'suffix' => 'large'],   // Desktop médio
+            ['width' => 768, 'height' => 432, 'suffix' => 'mobile']    // Mobile/Tablet
         ];
         
         return $this->imageOptimizationService->convertToWebP(

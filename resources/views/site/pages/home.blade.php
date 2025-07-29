@@ -8,8 +8,8 @@
         <div class="swiper-wrapper">
             @foreach($sliders as $slider)
             <div class="swiper-slide"
-                data-bg-src="@webpUrl($slider->image, 'xl')"
-                data-bg-srcset="@webpUrl($slider->image, 'mobile') 768w, @webpUrl($slider->image, 'large') 1600w, @webpUrl($slider->image, 'xl') 1920w"
+                data-bg-src="@webpUrl($slider->image)"
+                data-bg-srcset="@webpSrcset($slider->image)"
                 data-bg-sizes="(max-width: 768px) 768px, (max-width: 1600px) 1600px, 1920px">
                 <div class="hero-inner">
                     <div class="container">

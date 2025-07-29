@@ -78,9 +78,10 @@ class ImageHelper
      * Retorna URL WebP se existir, senão retorna original
      *
      * @param string $imagePath
+     * @param string $suffix - Sufixo para versões responsivas (opcional)
      * @return string
      */
-    public static function webpUrl($imagePath)
+    public static function webpUrl($imagePath, $suffix = null)
     {
         if (empty($imagePath)) {
             return '';
@@ -91,10 +92,61 @@ class ImageHelper
         $directory = $pathInfo['dirname'];
         $filename = $pathInfo['filename'];
         
+        // Se um sufixo foi fornecido, tentar usar versão responsiva
+        if ($suffix) {
+            $responsiveWebpPath = "{$directory}/{$filename}_{$suffix}.webp";
+            if (Storage::disk('public')->exists($responsiveWebpPath)) {
+                return Storage::url($responsiveWebpPath);
+            }
+        }
+        
+        // Fallback para versão principal WebP
         $webpPath = "{$directory}/{$filename}.webp";
         
         return Storage::disk('public')->exists($webpPath) 
             ? Storage::url($webpPath) 
             : Storage::url($cleanPath);
+    }
+
+    /**
+     * Gera srcset responsivo para sliders
+     *
+     * @param string $imagePath
+     * @return string
+     */
+    public static function webpSrcset($imagePath)
+    {
+        if (empty($imagePath)) {
+            return '';
+        }
+
+        $cleanPath = str_replace('storage/', '', $imagePath);
+        $pathInfo = pathinfo($cleanPath);
+        $directory = $pathInfo['dirname'];
+        $filename = $pathInfo['filename'];
+        
+        $srcset = [];
+        
+        // Verificar versões responsivas disponíveis
+        $responsiveVersions = [
+            ['suffix' => 'mobile', 'width' => 768],
+            ['suffix' => 'large', 'width' => 1600],
+            ['suffix' => 'xl', 'width' => 1920]
+        ];
+        
+        foreach ($responsiveVersions as $version) {
+            $responsivePath = "{$directory}/{$filename}_{$version['suffix']}.webp";
+            if (Storage::disk('public')->exists($responsivePath)) {
+                $srcset[] = Storage::url($responsivePath) . ' ' . $version['width'] . 'w';
+            }
+        }
+        
+        // Adicionar versão principal se não estiver na lista
+        $webpPath = "{$directory}/{$filename}.webp";
+        if (Storage::disk('public')->exists($webpPath)) {
+            $srcset[] = Storage::url($webpPath) . ' 1920w';
+        }
+        
+        return implode(', ', $srcset);
     }
 }

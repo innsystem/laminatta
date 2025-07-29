@@ -36,7 +36,7 @@ class ImageOptimizationService
             $webpPath = "{$directory}/{$webpFilename}";
             
             // Otimizar e salvar WebP
-            $webpImage = $image->toWebp(85); // 85% qualidade
+            $webpImage = $image->toWebp(95); // Aumentado de 85% para 95% para melhor qualidade
             Storage::disk('public')->put($webpPath, $webpImage);
             
             $results['original'] = [
@@ -62,7 +62,7 @@ class ImageOptimizationService
                     // Redimensionar mantendo proporção
                     $resizedImage = $image->scale($width, $height);
                     
-                    $resizedWebp = $resizedImage->toWebp(85);
+                    $resizedWebp = $resizedImage->toWebp(95); // Aumentado para 95% para versões responsivas
                     Storage::disk('public')->put($responsivePath, $resizedWebp);
                     
                     $results['responsive'][] = [
@@ -80,7 +80,7 @@ class ImageOptimizationService
             $fallbackFilename = "{$baseFilename}.jpg";
             $fallbackPath = "{$directory}/{$fallbackFilename}";
             
-            $fallbackImage = $image->toJpeg(80);
+            $fallbackImage = $image->toJpeg(95); // Aumentado de 80% para 95% para melhor qualidade
             Storage::disk('public')->put($fallbackPath, $fallbackImage);
             
             $results['fallback'] = [

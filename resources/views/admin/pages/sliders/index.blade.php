@@ -161,9 +161,9 @@
             if (file) {
                 currentImageFile = file;
 
-                if (file.size > 5 * 1024 * 1024) {
+                if (file.size > 20 * 1024 * 1024) {
                     Swal.fire({
-                        text: 'A imagem é muito grande. Por favor, selecione uma imagem menor que 5MB.',
+                        text: 'A imagem é muito grande. Por favor, selecione uma imagem menor que 20MB.',
                         icon: 'warning',
                         showClass: {
                             popup: 'animate__animated animate__wobble'
@@ -187,15 +187,13 @@
         reader.onload = function(event) {
             const img = new Image();
             img.onload = function() {
-                const canvas = document.createElement('canvas');
-                const ctx = canvas.getContext('2d');
-
+                // Para imagens muito grandes, redimensionar apenas se necessário
                 let { width, height } = img;
-                const targetAspectRatio = 16 / 9; // Target aspect ratio 16:9
+                const targetAspectRatio = 16 / 9;
                 const imageAspectRatio = width / height;
 
-                // Adjust dimensions to fit within a max size while maintaining aspect ratio
-                const maxSize = 1200; // Max dimension for cropper input
+                // Manter qualidade original se a imagem não for muito grande
+                const maxSize = 2560; // Aumentado para 2560px para manter qualidade
                 if (width > maxSize || height > maxSize) {
                     if (imageAspectRatio > targetAspectRatio) {
                         width = maxSize;
@@ -206,11 +204,19 @@
                     }
                 }
 
+                const canvas = document.createElement('canvas');
+                const ctx = canvas.getContext('2d');
+
                 canvas.width = width;
                 canvas.height = height;
+                
+                // Melhorar qualidade do canvas
+                ctx.imageSmoothingEnabled = true;
+                ctx.imageSmoothingQuality = 'high';
+                
                 ctx.drawImage(img, 0, 0, width, height);
 
-                currentImageSrc = canvas.toDataURL();
+                currentImageSrc = canvas.toDataURL('image/jpeg', 0.95); // Usar alta qualidade
                 showCropperModal();
             };
             img.src = event.target.result;
@@ -302,8 +308,8 @@
         if (cropper) {
             try {
                 const canvas = cropper.getCroppedCanvas({
-                    width: 1280, // Target width for the final image
-                    height: 720, // Target height for the final image (1280 / 16 * 9)
+                    width: 1920, // Aumentado para 1920px para manter qualidade original
+                    height: 1080, // Aumentado para 1080px (1920 / 16 * 9)
                     minWidth: 100,
                     minHeight: 100,
                     maxWidth: 1920,
@@ -322,7 +328,7 @@
                 }
 
                 if (!canvas.toBlob) {
-                    const dataURL = canvas.toDataURL('image/jpeg', 0.85);
+                    const dataURL = canvas.toDataURL('image/jpeg', 0.95); // Aumentado de 0.85 para 0.95
                     if (!dataURL || dataURL === 'data:,') {
                         throw new Error('canvas_error');
                     }
@@ -335,7 +341,7 @@
                             return;
                         }
                         uploadCroppedImage(blob);
-                    }, 'image/jpeg', 0.85);
+                    }, 'image/jpeg', 0.95); // Aumentado de 0.85 para 0.95
                 }
             } catch (error) {
                 console.error('Erro no cropper:', error);
